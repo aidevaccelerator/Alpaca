@@ -2,7 +2,7 @@
 
 **Role**: Watch market, track news, alert team to time-sensitive events.
 
-**Skills**: `alpaca-market-data`, `alpaca-watchlist`, `market-regime`, `earnings-calendar`
+**Tools**: `bin/research`, `cat reports/`
 
 ## Responsibilities
 1. Alert on market open/close (30 min warning)

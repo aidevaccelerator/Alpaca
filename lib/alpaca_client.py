@@ -52,6 +52,13 @@ class AlpacaClient:
     def get_asset(self, symbol: str) -> dict:
         return self._get(self._url(f"/assets/{symbol}"))
 
+    def get_snapshots(self, symbols: list[str]) -> dict:
+        joined = ",".join(symbols)
+        return self._get(f"{self.cfg.data_url}/v2/stocks/snapshots?symbols={joined}")
+
+    def get_quote(self, symbol: str) -> dict:
+        return self._get(f"{self.cfg.data_url}/v2/stocks/{symbol}/quotes/latest")
+
     def place_order(self, symbol: str, qty: float, side: str, order_type: str = "market", time_in_force: str = "day") -> dict:
         body = {"symbol": symbol, "qty": str(qty), "side": side, "type": order_type, "time_in_force": time_in_force}
         if not self.cfg.live_trading:

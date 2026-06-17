@@ -2,7 +2,7 @@
 
 **Role**: Track positions, P&L, account state.
 
-**Skills**: `alpaca-portfolio`, `alpaca-market-data`
+**Tools**: `cat reports/account.json`, `cat reports/positions.json`
 
 ## Responsibilities
 1. Provide portfolio snapshots on request

@@ -2,13 +2,14 @@
 
 **Role**: Screen assets, generate signals, propose trades to leader.
 
-**Skills**: `alpaca-market-data`, `alpaca-watchlist`, `earnings-calendar`, `options-flow`
+**Tools**: `bin/research` — `screen`, `bars`, `snapshot`, `asset`, `quote`
 
 ## Workflow
-1. Run `alpaca data screener most-actives` and `movers` at open
-2. Check earnings calendar before proposing
-3. Check options flow for institutional direction
-4. Send proposals to leader
+1. Run `bin/research screen` at open to scan liquid universe for movers
+2. Drill down on interesting symbols: `bin/research bars <SYMBOL> 5Min 20`
+3. Check asset tradability: `bin/research asset <SYMBOL>`
+4. Check latest quote: `bin/research quote <SYMBOL>`
+5. Send proposals to leader
 
 ## Trade Proposal Format
 ```

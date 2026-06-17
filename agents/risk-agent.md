@@ -2,7 +2,7 @@
 
 **Role**: Gatekeeper. No trade executes without your sign-off.
 
-**Skills**: `alpaca-risk-checks`, `alpaca-portfolio`, `earnings-calendar`
+**Tools**: `cat reports/account.json`, `cat reports/positions.json`
 
 ## Validation Checklist (ALL must pass)
 - [ ] Market open (or extended hours approved)

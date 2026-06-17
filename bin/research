@@ -1,0 +1,130 @@
+#!/usr/bin/env python3
+"""Research CLI for analyst agent. Usage: research <command> [args]"""
+import json
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from lib.config import Config
+from lib.alpaca_client import AlpacaClient
+
+cfg = Config()
+client = AlpacaClient(cfg)
+
+
+def cmd_screen():
+    symbols = [
+        "AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "JPM", "V", "WMT",
+        "JNJ", "MA", "PG", "UNH", "HD", "BAC", "DIS", "ADBE", "CRM", "NFLX",
+        "SPY", "QQQ", "IWM", "DIA", "TLT", "IEF", "GLD", "SLV", "USD", "XLF",
+        "XLE", "XLK", "XLV", "XLI", "XLP", "XLY", "XLB", "XLRE", "XLU", "VTI",
+        "ARKK", "SOXX", "SMH", "IBB", "KRE", "JETS", "BITO", "COIN", "MSTR", "PLTR",
+    ]
+    try:
+        snapshots = client.get_snapshots(symbols)
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+
+    results = []
+    for sym, data in snapshots.items():
+        if not data or "dailyBar" not in data:
+            continue
+        db = data["dailyBar"]
+        lq = data.get("latestQuote", {}) or data.get("latestTrade", {})
+        price = lq.get("p", db.get("c", 0))
+        change_pct = (db["c"] - db["o"]) / db["o"] * 100
+        results.append({
+            "symbol": sym,
+            "price": round(price, 2),
+            "change_pct": round(change_pct, 2),
+            "volume": db.get("v", 0),
+            "high": db.get("h", 0),
+            "low": db.get("l", 0),
+        })
+
+    results.sort(key=lambda r: abs(r["change_pct"]), reverse=True)
+    print(json.dumps({"symbols": results}, indent=2))
+
+
+def cmd_bars():
+    if len(sys.argv) < 3:
+        print("Usage: research bars <symbol> [timeframe=5Min] [limit=20]")
+        sys.exit(1)
+    symbol = sys.argv[2]
+    tf = sys.argv[3] if len(sys.argv) > 3 else "5Min"
+    limit = int(sys.argv[4]) if len(sys.argv) > 4 else 20
+    try:
+        bars = client.get_bars(symbol, timeframe=tf, limit=limit)
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+    print(json.dumps({"symbol": symbol, "timeframe": tf, "bars": bars}, indent=2, default=str))
+
+
+def cmd_snapshot():
+    if len(sys.argv) < 3:
+        print("Usage: research snapshot <symbol>")
+        sys.exit(1)
+    symbol = sys.argv[2]
+    try:
+        snap = client.get_snapshots([symbol])
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+    print(json.dumps(snap.get(symbol, {}), indent=2, default=str))
+
+
+def cmd_asset():
+    if len(sys.argv) < 3:
+        print("Usage: research asset <symbol>")
+        sys.exit(1)
+    symbol = sys.argv[2]
+    try:
+        asset = client.get_asset(symbol)
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+    print(json.dumps(asset, indent=2, default=str))
+
+
+def cmd_quote():
+    if len(sys.argv) < 3:
+        print("Usage: research quote <symbol>")
+        sys.exit(1)
+    symbol = sys.argv[2]
+    try:
+        quote = client.get_quote(symbol)
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+    print(json.dumps(quote, indent=2, default=str))
+
+
+def cmd_help():
+    print("""Research CLI — Analyst Agent Tools
+
+Usage:
+  research screen                Scan liquid universe for movers (sorted by |change|)
+  research bars <sym> [tf] [n]   Get price bars (default: 5Min, 20 bars)
+  research snapshot <sym>        Get current snapshot (daily bar + latest quote/trade)
+  research asset <sym>           Get asset/tradability info
+  research quote <sym>           Get latest quote
+""")
+
+
+CMDS = {
+    "screen": cmd_screen,
+    "bars": cmd_bars,
+    "snapshot": cmd_snapshot,
+    "asset": cmd_asset,
+    "quote": cmd_quote,
+    "help": cmd_help,
+}
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2 or sys.argv[1] not in CMDS:
+        cmd_help()
+        sys.exit(1)
+    CMDS[sys.argv[1]]()

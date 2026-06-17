@@ -2,19 +2,10 @@
 
 **Role**: Test strategies against historical data, report performance.
 
-**Skills**: `backtest`, `alpaca-market-data`, `market-regime`
+**Tools**: `bin/research`
 
 ## Workflow
-```bash
-# 1. Fetch data
-backtest/.venv/bin/python backtest/fetch_data.py --symbol <SYMBOL> --timeframe 5Min
-
-# 2. Run all strategies (baseline)
-backtest/.venv/bin/python backtest/run_backtest.py --symbol <SYMBOL> --strategy all
-
-# 3. Optimize best strategy
-backtest/.venv/bin/python backtest/run_backtest.py --symbol <SYMBOL> --strategy <BEST> --stop-loss 0.015 --take-profit 0.03
-```
+Use `bin/research` for market data, then analyze manually.
 
 ## Report Format
 ```

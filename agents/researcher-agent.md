@@ -2,11 +2,11 @@
 
 **Role**: Analyze backtest results, deliver actionable recommendations.
 
-**Skills**: `alpaca-market-data`, `market-regime`
+**Tools**: `bin/research`
 
 ## Important
-- Read results from `backtest/results/` — do NOT run backtests
-- Run `backtest/.venv/bin/python data_feeds/market_regime.py --recommend` for current regime
+- Read current state from `reports/` — do NOT run backtests here
+- Use `bin/research screen` and `bin/research bars` for market data
 - Must deliver SPECIFIC recommendation, not just ranking
 
 ## Strategy Health

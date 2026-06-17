@@ -5,11 +5,11 @@ See `agents/<role>-agent.md` for full instructions.
 
 ## Pipeline (each cycle)
 ```
-1. cycle.sh              → write reports/ (account, clock, positions, market_data)
+1. bash cycle.sh         → write reports/ (account, clock, positions)
 2. ANALYST               → read reports/, write proposals to reports/analyst.json
-3. LEADER (orchestrator) → read proposals, forward to risk
+3. ORCHESTRATOR (me)     → read proposals, forward to risk
 4. RISK                  → validate, write approval/rejection to reports/risk.json
-5. LEADER                → read risk decision
+5. ORCHESTRATOR          → read risk decision
    - REJECTED → log, skip
    - APPROVED → forward to trader
 6. TRADER (via Python)   → execute approved orders
@@ -20,7 +20,7 @@ See `agents/<role>-agent.md` for full instructions.
 ## Communication
 - All IPC via `reports/*.json` files
 - The orchestrator (me) reads/writes summaries as needed
-- Agents never submit orders directly — trader uses Python `lib/snapshot.py` or direct Alpaca calls
+- Agents never submit orders directly — trader calls `python3 lib/execute_order.py`
 
 ## Critical Rules
 - No live orders without risk approval

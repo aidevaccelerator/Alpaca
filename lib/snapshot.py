@@ -16,7 +16,6 @@ OUTPUT_FILES = {
     "account": "account.json",
     "clock": "clock.json",
     "positions": "positions.json",
-    "market_data": "market_data.json",
 }
 
 
@@ -42,27 +41,10 @@ def main():
     except Exception as e:
         positions = {"error": str(e)}
 
-    market_data = {}
-    for sym in cfg.symbols:
-        try:
-            bars = client.get_bars(sym, timeframe="5Min", limit=5)
-            if bars:
-                last = bars[-1]
-                market_data[sym] = {
-                    "price": last["c"],
-                    "change_pct": (last["c"] - bars[-2]["c"]) / bars[-2]["c"] * 100 if len(bars) > 1 else 0,
-                    "volume": last["v"],
-                    "high": last["h"],
-                    "low": last["l"],
-                }
-        except Exception as e:
-            market_data[sym] = {"error": str(e)}
-
     data = {
         "account": account,
         "clock": clock,
         "positions": positions,
-        "market_data": market_data,
     }
 
     for key, filename in OUTPUT_FILES.items():
@@ -70,19 +52,12 @@ def main():
         with open(path, "w") as f:
             json.dump(data[key], f, indent=2, default=str)
 
-    # Print summary for the orchestrator
     is_open = clock.get("is_open", False) if isinstance(clock, dict) else False
     equity = float(account.get("equity", 0)) if isinstance(account, dict) else 0
     bp = float(account.get("buying_power", 0)) if isinstance(account, dict) else 0
     pos_count = len(positions) if isinstance(positions, list) else 0
 
     print(f"MARKET={'OPEN' if is_open else 'CLOSED'} | EQUITY={equity:.2f} | BP={bp:.2f} | POSITIONS={pos_count}")
-
-    for sym, info in market_data.items():
-        if "price" in info:
-            print(f"DATA  {sym} | {info['price']:.2f} | {info['change_pct']:+.2f}% | vol={info['volume']}")
-        elif "error" in info:
-            print(f"ERROR {sym} | {info['error']}")
 
 
 if __name__ == "__main__":

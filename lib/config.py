@@ -14,5 +14,4 @@ class Config:
         "ALPACA_DATA_URL", "https://data.alpaca.markets",
     ))
     live_trading: bool = field(default_factory=lambda: os.getenv("ALPACA_LIVE_TRADE", "false").lower() == "true")
-    symbols: list[str] = field(default_factory=lambda: os.getenv("TRADE_SYMBOLS", "SPY,QQQ,TLT,GLD").split(","))
     reports_dir: Path = Path("reports")
