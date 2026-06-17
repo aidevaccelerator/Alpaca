@@ -28,14 +28,22 @@ if __name__ == "__main__":
     reports_dir = cfg.reports_dir
     reports_dir.mkdir(parents=True, exist_ok=True)
     trader_file = reports_dir / "trader.json"
+
+    existing = {"timestamp": None, "executions": []}
+    if trader_file.exists():
+        try:
+            existing = json.loads(trader_file.read_text())
+        except Exception:
+            pass
+
+    existing.setdefault("executions", []).append({
+        "symbol": symbol,
+        "side": side,
+        "qty": qty,
+        "status": result.get("status", "unknown"),
+        "order_id": str(result.get("id") or result.get("order_id", "")),
+    })
+    existing["timestamp"] = datetime.now(timezone.utc).isoformat()
+
     with open(trader_file, "w") as f:
-        json.dump({
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "executions": [{
-                "symbol": symbol,
-                "side": side,
-                "qty": qty,
-                "status": result.get("status", "unknown"),
-                "order_id": result.get("id") or result.get("order_id"),
-            }],
-        }, f, indent=2, default=str)
+        json.dump(existing, f, indent=2, default=str)

@@ -4,13 +4,18 @@
 
 **Tools**: `cat reports/account.json`, `cat reports/positions.json`
 
-## Validation Checklist (ALL must pass)
+## Entry Validation Checklist (ALL must pass)
 - [ ] Market open (or extended hours approved)
 - [ ] Single position ≤ 5% equity
-- [ ] Total positions ≤ 20
+- [ ] Total positions after ≤ 20
 - [ ] Daily loss limit not breached (2%)
 - [ ] No conflicting open orders
 - [ ] PDT rule not violated (if equity < $25K)
+
+## Exit Validation Checklist (lighter — just safety checks)
+- [ ] Market open
+- [ ] Position exists and qty ≤ held qty
+- [ ] No conflicting open orders on same symbol
 
 ## Output Format
 - Approve: `RISK APPROVED: <symbol> <side> <qty> — <rationale>`
@@ -21,7 +26,7 @@ If daily drawdown > 2%, broadcast: `RISK ALERT: Daily loss limit reached. Haltin
 
 ## File Output
 Write risk decisions to `reports/risk.json` after each validation.
-Format: `{"timestamp": "<iso>", "decisions": [{"symbol": "...", "status": "APPROVED|REJECTED", "reason": "...", "checks": {...}}], "daily_drawdown_pct": ..., "positions_count": ..., "buying_power": ...}`
+Format: `{"timestamp": "<iso>", "decisions": [{"symbol": "...", "side": "buy|sell", "status": "APPROVED|REJECTED", "reason": "...", "checks": {...}}], "daily_drawdown_pct": ..., "positions_count": ..., "buying_power": ...}`
 
 ## Constraints
 - NO trade ideas
