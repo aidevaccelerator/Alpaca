@@ -12,8 +12,8 @@
 
 ## Exit Workflow (EVERY cycle — same priority as entries)
 For each open position, determine action:
-1. **Stop loss hit?** If price ≤ stop_price from original proposal, or current unrealized P&L ≤ -2% of position value → recommend SELL
-2. **Take profit hit?** If price ≥ target_price from original proposal, or unrealized P&L ≥ +3% → recommend SELL
+1. **Stop loss hit?** If price ≤ stop_price from original proposal, or current unrealized P&L ≤ -5% of position value → recommend SELL
+2. **Take profit hit?** If price ≥ target_price from original proposal, or unrealized P&L ≥ +15% → recommend SELL
 3. **Technical breakdown?** Use `bin/research bars <SYMBOL> 5Min 10` — check if price broke below recent support or reversed from uptrend → consider SELL
 4. **Time decay?** If approaching market close (16:00 ET) and position is intraday → consider closing
 5. **Otherwise** → HOLD
