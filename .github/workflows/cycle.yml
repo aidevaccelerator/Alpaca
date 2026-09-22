@@ -2,8 +2,9 @@ name: Alpaca Trader Bot Cycle
 
 on:
   schedule:
-    # Every minute, M-F, 9:25-16:05 ET (13:25-20:05 UTC)
-    - cron: '* 13-20 * * 1-5'
+    # Every 5 min, M-F, 9:25-16:05 ET (13:25-20:05 UTC)
+    # GitHub Actions min interval is 5 min
+    - cron: '*/5 13-20 * * 1-5'
   workflow_dispatch: # manual trigger
 
 jobs:
