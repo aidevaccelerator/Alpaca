@@ -102,24 +102,270 @@ def cmd_quote():
     print(json.dumps(quote, indent=2, default=str))
 
 
+def cmd_indicators():
+    if len(sys.argv) < 3:
+        print("Usage: research indicators <symbol> [timeframe=5Min] [limit=50]")
+        sys.exit(1)
+    symbol = sys.argv[2]
+    tf = sys.argv[3] if len(sys.argv) > 3 else "5Min"
+    limit = int(sys.argv[4]) if len(sys.argv) > 4 else 50
+    try:
+        bars = client.get_bars(symbol, timeframe=tf, limit=limit)
+        daily_bars = client.get_bars(symbol, timeframe="1Day", limit=50)
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+    from lib.indicators import compute_all
+    result = compute_all(bars, daily_bars)
+    result["symbol"] = symbol
+    print(json.dumps(result, indent=2, default=str))
+
+
+def cmd_regime():
+    try:
+        spy_bars = client.get_bars("SPY", timeframe="1Day", limit=50)
+        qqq_bars = client.get_bars("QQQ", timeframe="1Day", limit=50)
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+    from lib.indicators import ema, compute_all
+    spy_close = [b.get("c", 0) for b in spy_bars]
+    qqq_close = [b.get("c", 0) for b in qqq_bars]
+    spy_e20 = ema(spy_close, 20)
+    spy_e50 = ema(spy_close, 50)
+    qqq_e20 = ema(qqq_close, 20)
+    qqq_e50 = ema(qqq_close, 50)
+
+    def regime(e20, e50):
+        if e20 is None or e50 is None:
+            return "unknown"
+        return "uptrend" if e20 > e50 else "downtrend"
+
+    print(json.dumps({
+        "spy": {"regime": regime(spy_e20[-1], spy_e50[-1]), "ema_20": round(spy_e20[-1], 2), "ema_50": round(spy_e50[-1], 2)},
+        "qqq": {"regime": regime(qqq_e20[-1], qqq_e50[-1]), "ema_20": round(qqq_e20[-1], 2), "ema_50": round(qqq_e50[-1], 2)},
+    }, indent=2))
+
+
+def cmd_screener():
+    from lib.universe import screen_dynamic
+    min_vol = int(sys.argv[2]) if len(sys.argv) > 2 else 500_000
+    min_price = float(sys.argv[3]) if len(sys.argv) > 3 else 5.0
+    try:
+        result = screen_dynamic(client, min_vol, min_price)
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+    print(json.dumps(result, indent=2, default=str))
+
+
+def cmd_news():
+    symbols = None
+    limit = 20
+    i = 1
+    while i < len(sys.argv):
+        if sys.argv[i] == "--symbols" and i + 1 < len(sys.argv):
+            symbols = sys.argv[i + 1].split(",")
+            i += 2
+        elif sys.argv[i] == "--limit" and i + 1 < len(sys.argv):
+            limit = int(sys.argv[i + 1])
+            i += 2
+        else:
+            i += 1
+    try:
+        if symbols:
+            news = client.get_news(symbols, limit)
+        else:
+            news = client.get_market_news(limit)
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+    print(json.dumps({"count": len(news), "news": news}, indent=2, default=str))
+
+
+def cmd_backtest():
+    if len(sys.argv) < 3:
+        print("Usage: research backtest <symbol> [timeframe=1Day] [limit=100]")
+        sys.exit(1)
+    symbol = sys.argv[2]
+    tf = sys.argv[3] if len(sys.argv) > 3 else "1Day"
+    limit = int(sys.argv[4]) if len(sys.argv) > 4 else 100
+    try:
+        bars = client.get_bars(symbol, timeframe=tf, limit=limit)
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+    if len(bars) < 30:
+        print(json.dumps({"error": f"Need at least 30 bars, got {len(bars)}"}))
+        sys.exit(1)
+    from lib.backtest import Backtester
+    bt = Backtester(bars)
+    results = bt.run_all()
+    output = {
+        "symbol": symbol,
+        "bars": len(bars),
+        "timeframe": tf,
+        "strategies": [r.to_dict() for r in results],
+    }
+    if results:
+        best = max(results, key=lambda r: r.sharpe)
+        output["recommendation"] = best.strategy
+        output["best_sharpe"] = best.sharpe
+    print(json.dumps(output, indent=2, default=str))
+
+
+def cmd_signals():
+    if len(sys.argv) < 3:
+        print("Usage: research signals <symbol> [timeframe=5Min]")
+        sys.exit(1)
+    symbol = sys.argv[2]
+    tf = sys.argv[3] if len(sys.argv) > 3 else "5Min"
+    try:
+        bars = client.get_bars(symbol, timeframe=tf, limit=50)
+        daily_bars = client.get_bars(symbol, timeframe="1Day", limit=50)
+        snap = client.get_snapshots([symbol])
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+    from lib.indicators import compute_all
+    from lib.laya_signals import classify_signal
+    indicators = compute_all(bars, daily_bars)
+    sd = snap.get(symbol, {})
+    db = sd.get("dailyBar", {})
+    lq = sd.get("latestQuote", {}) or sd.get("latestTrade", {})
+    price = lq.get("p", db.get("c", 0))
+    change_pct = (db["c"] - db["o"]) / db["o"] * 100 if db.get("o") else 0
+
+    # Get regime
+    try:
+        spy_bars = client.get_bars("SPY", timeframe="1Day", limit=50)
+        from lib.indicators import ema as _ema
+        spy_close = [b.get("c", 0) for b in spy_bars]
+        spy_e20 = _ema(spy_close, 20)
+        spy_e50 = _ema(spy_close, 50)
+        regime = "uptrend" if spy_e20[-1] and spy_e50[-1] and spy_e20[-1] > spy_e50[-1] else "downtrend"
+    except Exception:
+        regime = "unknown"
+
+    signal = classify_signal(symbol, price, change_pct, indicators, regime)
+    signal["indicators"] = {
+        "rsi_14": indicators.get("rsi_14"),
+        "trend": indicators.get("trend_signal"),
+        "atr_14": indicators.get("atr_14"),
+        "vwap": indicators.get("vwap"),
+    }
+    signal["regime"] = regime
+    print(json.dumps(signal, indent=2, default=str))
+
+
+def cmd_assess():
+    if len(sys.argv) < 3:
+        print("Usage: research assess <symbol> [--pnl PCT] [--age DAYS] [--regime REGIME]")
+        sys.exit(1)
+    symbol = sys.argv[2]
+    pnl_pct = 0.0
+    age = 1
+    regime = "unknown"
+    i = 3
+    while i < len(sys.argv):
+        if sys.argv[i] == "--pnl" and i + 1 < len(sys.argv):
+            pnl_pct = float(sys.argv[i + 1])
+            i += 2
+        elif sys.argv[i] == "--age" and i + 1 < len(sys.argv):
+            age = int(sys.argv[i + 1])
+            i += 2
+        elif sys.argv[i] == "--regime" and i + 1 < len(sys.argv):
+            regime = sys.argv[i + 1]
+            i += 2
+        else:
+            i += 1
+    try:
+        positions = client.get_positions()
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+    pos = None
+    for p in positions:
+        if p["symbol"] == symbol:
+            pos = p
+            break
+    if not pos:
+        print(json.dumps({"error": f"No position in {symbol}"}))
+        sys.exit(1)
+    from lib.laya_signals import assess_risk
+    entry = float(pos["cost_basis"]) / float(pos["qty"])
+    current = float(pos["market_value"]) / float(pos["qty"])
+    result = assess_risk(
+        symbol=symbol,
+        side="long",
+        qty=int(float(pos["qty"])),
+        entry_price=entry,
+        current_price=current,
+        pnl_pct=pnl_pct if pnl_pct else float(pos["unrealized_plpc"]) * 100,
+        position_age_days=age,
+        market_regime=regime,
+    )
+    print(json.dumps(result, indent=2, default=str))
+
+
+def cmd_triage():
+    if len(sys.argv) < 3:
+        print("Usage: research triage <symbol>")
+        sys.exit(1)
+    symbol = sys.argv[2]
+    try:
+        bars = client.get_bars(symbol, timeframe="1Day", limit=50)
+        snap = client.get_snapshots([symbol])
+    except Exception as e:
+        print(json.dumps({"error": str(e)}))
+        sys.exit(1)
+    from lib.indicators import compute_all, ema as _ema
+    indicators = compute_all(bars)
+    spy_bars = client.get_bars("SPY", timeframe="1Day", limit=50)
+    spy_close = [b.get("c", 0) for b in spy_bars]
+    spy_e20 = _ema(spy_close, 20)
+    spy_e50 = _ema(spy_close, 50)
+    regime = "uptrend" if spy_e20[-1] and spy_e50[-1] and spy_e20[-1] > spy_e50[-1] else "downtrend"
+    from lib.laya_signals import triage_symbol
+    result = triage_symbol(symbol, "unknown", indicators, regime)
+    result["regime"] = regime
+    print(json.dumps(result, indent=2, default=str))
+
+
 def cmd_help():
     print("""Research CLI — Analyst Agent Tools
 
 Usage:
-  research screen                Scan liquid universe for movers (sorted by |change|)
-  research bars <sym> [tf] [n]   Get price bars (default: 5Min, 20 bars)
-  research snapshot <sym>        Get current snapshot (daily bar + latest quote/trade)
-  research asset <sym>           Get asset/tradability info
-  research quote <sym>           Get latest quote
+  research screen                        Scan hardcoded universe (legacy)
+  research screener [min_vol] [min_p]    Dynamic screening: volume, momentum, new highs, sector leaders
+  research bars <sym> [tf] [n]           Get price bars (default: 5Min, 20 bars)
+  research snapshot <sym>                Get current snapshot (daily bar + latest quote/trade)
+  research asset <sym>                   Get asset/tradability info
+  research quote <sym>                   Get latest quote
+  research indicators <sym> [tf] [n]     Compute technical indicators (RSI, EMA, ATR, VWAP, BB)
+  research regime                        Get market regime (SPY/QQQ trend via 20/50 EMA)
+  research news [--symbols X,Y] [--limit N]  Get market or symbol-specific news
+  research backtest <sym> [tf] [n]       Backtest strategies on historical bars
+  research signals <sym> [tf]            Laya AI signal classification (buy/sell/hold + conviction)
+  research assess <sym> [--pnl PCT]      Laya AI risk assessment for open position
+  research triage <sym>                  Laya AI priority triage for symbol
 """)
 
 
 CMDS = {
     "screen": cmd_screen,
+    "screener": cmd_screener,
     "bars": cmd_bars,
     "snapshot": cmd_snapshot,
     "asset": cmd_asset,
     "quote": cmd_quote,
+    "indicators": cmd_indicators,
+    "regime": cmd_regime,
+    "news": cmd_news,
+    "backtest": cmd_backtest,
+    "signals": cmd_signals,
+    "assess": cmd_assess,
+    "triage": cmd_triage,
     "help": cmd_help,
 }
 

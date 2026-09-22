@@ -1,0 +1,36 @@
+name: Alpaca Trader Bot Cycle
+
+on:
+  schedule:
+    # Every minute, M-F, 9:25-16:05 ET (13:25-20:05 UTC)
+    - cron: '* 13-20 * * 1-5'
+  workflow_dispatch: # manual trigger
+
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Write .env
+        run: |
+          cat > .env << 'ENVEOF'
+          APCA-API-KEY-ID: ${{ secrets.APCA_API_KEY_ID }}
+          APCA-API-SECRET-KEY: ${{ secrets.APCA_API_SECRET_KEY }}
+          ENVEOF
+
+      - name: Run cycle
+        run: |
+          export APCA_API_KEY_ID="${{ secrets.APCA_API_KEY_ID }}"
+          export APCA_API_SECRET_KEY="${{ secrets.APCA_API_SECRET_KEY }}"
+          FORCE_CYCLE=1 python lib/snapshot.py
+        env:
+          APCA_API_KEY_ID: ${{ secrets.APCA_API_KEY_ID }}
+          APCA_API_SECRET_KEY: ${{ secrets.APCA_API_SECRET_KEY }}

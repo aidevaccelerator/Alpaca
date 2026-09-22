@@ -2,10 +2,16 @@
 
 **Role**: Test strategies against historical data, report performance.
 
-**Tools**: `bin/research`
+**Tools**: `bin/research backtest`, `bin/research bars`
 
 ## Workflow
-Use `bin/research` for market data, then analyze manually.
+1. Run `bin/research backtest <symbol> [timeframe] [limit]` to test all strategies
+2. Or run individual: `bin/research bars <symbol> 1Day 100` then analyze manually
+3. The backtest engine runs 4 strategies automatically:
+   - EMA Crossover (9/20)
+   - RSI Reversal (oversold/overbought)
+   - Bollinger Breakout
+   - ATR Trailing Stop
 
 ## Report Format
 ```
