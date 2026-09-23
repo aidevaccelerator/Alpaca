@@ -1,0 +1,239 @@
+{
+  "timestamp": "2026-09-22T14:00:55.098186+00:00",
+  "executions": [
+    {
+      "symbol": "PLTR",
+      "side": "buy",
+      "qty": 3,
+      "status": "dry-run",
+      "order_id": ""
+    },
+    {
+      "symbol": "DIS",
+      "side": "buy",
+      "qty": 4,
+      "status": "dry-run",
+      "order_id": ""
+    },
+    {
+      "symbol": "IBB",
+      "side": "buy",
+      "qty": 2,
+      "status": "dry-run",
+      "order_id": ""
+    },
+    {
+      "symbol": "PLTR",
+      "side": "buy",
+      "qty": 3,
+      "status": "pending_new",
+      "order_id": "ece34c93-b8bc-48c3-aaad-4fd9369142cc"
+    },
+    {
+      "symbol": "DIS",
+      "side": "buy",
+      "qty": 4,
+      "status": "pending_new",
+      "order_id": "ba67bf07-3430-43ea-8ef6-43ad4a144740"
+    },
+    {
+      "symbol": "IBB",
+      "side": "buy",
+      "qty": 2,
+      "status": "pending_new",
+      "order_id": "daae00c8-f71a-41f1-89cf-bf1157551f9c"
+    },
+    {
+      "symbol": "IWM",
+      "side": "buy",
+      "qty": 1,
+      "status": "pending_new",
+      "order_id": "aa24b40f-3a89-4dfd-b53b-b45fe79ec15d"
+    },
+    {
+      "symbol": "ARKK",
+      "side": "buy",
+      "qty": 6,
+      "status": "pending_new",
+      "order_id": "b3f64f2a-ed5b-43f5-985d-76dd0064019f"
+    },
+    {
+      "symbol": "BITO",
+      "side": "buy",
+      "qty": 55,
+      "status": "pending_new",
+      "order_id": "9b0f52ef-1c97-4a3a-b74c-bdd81f5a2e7f"
+    },
+    {
+      "symbol": "COIN",
+      "side": "buy",
+      "qty": 2,
+      "status": "pending_new",
+      "order_id": "8116a07e-7fe1-4f58-bb32-c45637e5bec0"
+    },
+    {
+      "symbol": "XLI",
+      "side": "buy",
+      "qty": 2,
+      "status": "pending_new",
+      "order_id": "93c97b31-6726-4838-a55e-41d44089b375"
+    },
+    {
+      "symbol": "NVDA",
+      "side": "buy",
+      "qty": 2,
+      "status": "pending_new",
+      "order_id": "bbef7abe-c056-4a32-a009-a4cd0290cf58"
+    },
+    {
+      "symbol": "PLTR",
+      "side": "sell",
+      "qty": 3,
+      "status": "pending_new",
+      "order_id": "1d85aa02-de6f-4dbc-b66b-868971fd9cd2"
+    },
+    {
+      "symbol": "JETS",
+      "side": "buy",
+      "qty": 15,
+      "status": "pending_new",
+      "order_id": "320c5f47-4425-417b-86b4-24a3f7f59e57"
+    },
+    {
+      "symbol": "INTC",
+      "side": "buy",
+      "qty": 3,
+      "status": "pending_new",
+      "order_id": "2274a1ff-3414-4e76-bf79-1845396021a3"
+    },
+    {
+      "symbol": "XLF",
+      "side": "buy",
+      "qty": 9,
+      "status": "pending_new",
+      "order_id": "a68de7b1-8a29-4575-b66e-b02ee2213a8f"
+    },
+    {
+      "symbol": "COIN",
+      "side": "sell",
+      "qty": 2,
+      "status": "pending_new",
+      "order_id": "6606ebde-0c16-444c-897f-fc0ebfd6ea78"
+    },
+    {
+      "symbol": "BITO",
+      "side": "sell",
+      "qty": 55,
+      "status": "pending_new",
+      "order_id": "21083729-317d-46b9-af83-01b4210790b2"
+    },
+    {
+      "symbol": "XLV",
+      "side": "buy",
+      "qty": 3,
+      "status": "pending_new",
+      "order_id": "3fe13c79-8158-453a-adc1-bc6d2b0c21e2"
+    },
+    {
+      "symbol": "JETS",
+      "side": "sell",
+      "qty": 15.0,
+      "order_type": "market",
+      "status": "accepted",
+      "order_id": "550c8051-ddf5-4c0f-9f26-fa6c13278fe6",
+      "fill_price": null
+    },
+    {
+      "symbol": "IBB",
+      "side": "sell",
+      "qty": 2.0,
+      "order_type": "market",
+      "status": "accepted",
+      "order_id": "5441f3bb-cd85-413f-953d-3c549fb637e0",
+      "fill_price": null
+    },
+    {
+      "symbol": "XLI",
+      "side": "sell",
+      "qty": 2.0,
+      "order_type": "market",
+      "status": "accepted",
+      "order_id": "fc6d1f6b-76b3-4d43-be7e-9a081a953073",
+      "fill_price": null
+    },
+    {
+      "symbol": "INTC",
+      "side": "sell",
+      "qty": 3.0,
+      "order_type": "market",
+      "status": "accepted",
+      "order_id": "57f0d5b6-7cb0-4975-9309-89c5e3d62879",
+      "fill_price": null
+    },
+    {
+      "symbol": "JETS",
+      "side": "sell",
+      "qty": 15.0,
+      "order_type": "market",
+      "status": "accepted",
+      "order_id": "55c62598-3af9-47c8-b0fa-a61e485d1976",
+      "fill_price": null
+    },
+    {
+      "symbol": "IBB",
+      "side": "sell",
+      "qty": 2.0,
+      "order_type": "market",
+      "status": "accepted",
+      "order_id": "8d3f67d4-e240-4983-bd46-b09ccf3a7294",
+      "fill_price": null
+    },
+    {
+      "symbol": "XLI",
+      "side": "sell",
+      "qty": 2.0,
+      "order_type": "market",
+      "status": "accepted",
+      "order_id": "1e1971ad-ef75-44ca-b182-8e1c652127a3",
+      "fill_price": null
+    },
+    {
+      "symbol": "INTC",
+      "side": "sell",
+      "qty": 3.0,
+      "order_type": "market",
+      "status": "accepted",
+      "order_id": "6ccfc20a-dd32-4855-a53d-ccb220705e38",
+      "fill_price": null
+    },
+    {
+      "symbol": "PLTR",
+      "side": "buy",
+      "qty": 2.0,
+      "order_type": "market",
+      "status": "accepted",
+      "order_id": "5ebe5a71-15cf-440d-9972-57faf6adcc95",
+      "stop_price": "165.00",
+      "take_profit_price": "210.00",
+      "fill_price": null
+    },
+    {
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 1.0,
+      "order_type": "market",
+      "status": "filled",
+      "order_id": "a8c99f28-1e15-48ef-8ff1-fc0d4760b071",
+      "fill_price": "288.15"
+    },
+    {
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 1.0,
+      "order_type": "market",
+      "status": "filled",
+      "order_id": "de093c8a-f7ec-4470-8dc4-4a0c633bd721",
+      "fill_price": "288.16"
+    }
+  ]
+}

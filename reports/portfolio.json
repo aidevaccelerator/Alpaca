@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-06-25T13:48:30-04:00",
+  "equity": 9888.80,
+  "buying_power": 34591.54,
+  "cash": 5752.43,
+  "positions": [
+    {"symbol": "ARKK", "qty": 6, "avg_entry": 81.08, "current": 76.61, "unrealized_pl": -26.82},
+    {"symbol": "DIS", "qty": 4, "avg_entry": 102.18, "current": 100.23, "unrealized_pl": -7.80},
+    {"symbol": "IBB", "qty": 2, "avg_entry": 175.36, "current": 184.51, "unrealized_pl": 18.30},
+    {"symbol": "INTC", "qty": 3, "avg_entry": 128.38, "current": 133.34, "unrealized_pl": 14.87},
+    {"symbol": "IWM", "qty": 1, "avg_entry": 295.41, "current": 298.38, "unrealized_pl": 2.97},
+    {"symbol": "JETS", "qty": 15, "avg_entry": 31.13, "current": 33.13, "unrealized_pl": 30.00},
+    {"symbol": "NVDA", "qty": 2, "avg_entry": 207.33, "current": 194.40, "unrealized_pl": -25.86},
+    {"symbol": "XLF", "qty": 9, "avg_entry": 53.91, "current": 54.04, "unrealized_pl": 1.17},
+    {"symbol": "XLI", "qty": 2, "avg_entry": 182.20, "current": 184.05, "unrealized_pl": 3.70},
+    {"symbol": "XLV", "qty": 3, "avg_entry": 155.93, "current": 155.94, "unrealized_pl": 0.03}
+  ],
+  "executed_trades": [
+    {"symbol": "COIN", "side": "sell", "qty": 2, "status": "filled"},
+    {"symbol": "BITO", "side": "sell", "qty": 55, "status": "filled"},
+    {"symbol": "XLV", "side": "buy", "qty": 3, "status": "filled"}
+  ],
+  "unrealized_pnl": 10.56,
+  "daily_pnl": 11.79
+}

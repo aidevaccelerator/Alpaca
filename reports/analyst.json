@@ -1,0 +1,33 @@
+{
+  "timestamp": "2026-09-22T15:30:00-04:00",
+  "market_regime": {"spy": "uptrend", "qqq": "uptrend"},
+  "laya_assessments": {
+    "ARKK": {"decision": "approve", "risk": "medium", "pnl_pct": 12.7},
+    "XLV": {"decision": "approve", "risk": "low", "pnl_pct": 8.1},
+    "XLF": {"decision": "approve", "risk": "medium", "pnl_pct": 2.7},
+    "NVDA": {"decision": "approve", "risk": "medium", "pnl_pct": 9.8},
+    "DIS": {"decision": "approve", "risk": "low", "pnl_pct": 1.7},
+    "PLTR": {"decision": "approve", "risk": "low", "pnl_pct": -0.5},
+    "IWM": {"decision": "reject", "risk": "low", "pnl_pct": -2.4}
+  },
+  "sector_exposure": {
+    "technology": {"value": 822.35, "pct": 29.5, "limit": 25, "note": "OVER LIMIT — no new tech entries"},
+    "healthcare": {"value": 673.40, "pct": 24.1},
+    "financials": {"value": 498.42, "pct": 17.9},
+    "growth": {"value": 548.16, "pct": 19.6},
+    "consumer": {"value": 415.68, "pct": 14.9},
+    "broad_market": {"value": 288.27, "pct": 10.3}
+  },
+  "exits": [
+    {
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 1,
+      "reason": "laya_risk",
+      "current_pnl": -6.84,
+      "laya_rationale": "Laya rejects (43.8%), P&L -2.4% and weakening, small-cap underperforming in uptrend"
+    }
+  ],
+  "entries": [],
+  "notes": "META (buy 48%) blocked by tech sector concentration (29.5% > 25% limit). Reduce NVDA or PLTR before adding new tech positions."
+}

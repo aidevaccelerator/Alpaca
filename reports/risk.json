@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-09-22T13:59:46.208483+00:00",
+  "decisions": [
+    {
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 1,
+      "status": "APPROVED",
+      "checks": {
+        "position_exists": true,
+        "qty_valid": true,
+        "no_conflicting_orders": true
+      },
+      "approved_at": "2026-09-22T13:59:46.208648+00:00"
+    },
+    {
+      "symbol": "META",
+      "side": "buy",
+      "qty": 0,
+      "status": "REJECTED",
+      "reason": "Failed: ['sector_concentration']",
+      "checks": {
+        "single_position_5pct": true,
+        "total_positions_20": true,
+        "daily_loss_limit": true,
+        "no_conflicting_orders": true,
+        "sector_concentration": false
+      },
+      "approved_at": "2026-09-22T13:59:46.208651+00:00"
+    }
+  ],
+  "daily_drawdown_pct": 0,
+  "positions_count": 7,
+  "buying_power": 36393.45
+}

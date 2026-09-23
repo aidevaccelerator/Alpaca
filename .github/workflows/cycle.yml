@@ -7,9 +7,16 @@ on:
     - cron: '*/10 13-20 * * 1-5'
   workflow_dispatch: # manual trigger
 
+# Prevent overlapping runs
+concurrency:
+  group: alpaca-cycle
+  cancel-in-progress: false
+
 jobs:
   cycle:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -28,3 +35,15 @@ jobs:
           ALPACA_BASE_URL: ${{ secrets.ALPACA_BASE_URL }}
           ALPACA_DATA_URL: ${{ secrets.ALPACA_DATA_URL }}
           ALPACA_LIVE_TRADE: ${{ secrets.ALPACA_LIVE_TRADE }}
+
+      - name: Commit reports
+        run: |
+          git config user.name "alpaca-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add reports/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Cycle update [skip ci]"
+            git push
+          fi
