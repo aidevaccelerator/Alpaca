@@ -1,10 +1,7 @@
 name: Alpaca Trader Bot Cycle
 
 on:
-  schedule:
-    # Every 10 min, M-F, 9:25-16:05 ET (13:25-20:05 UTC)
-    # Cycle takes ~5.5 min, 10-min buffer prevents overlap
-    - cron: '*/10 13-20 * * 1-5'
+  # Scheduled by external cron-job.org (GitHub cron is unreliable)
   workflow_dispatch: # manual trigger
 
 # Prevent overlapping runs
