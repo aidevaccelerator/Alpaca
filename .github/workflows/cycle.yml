@@ -42,5 +42,7 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Cycle update [skip ci]"
-            git push
+            for i in 1 2 3; do
+              git push && break || { echo "Push failed, retry $i"; sleep 5; }
+            done
           fi
