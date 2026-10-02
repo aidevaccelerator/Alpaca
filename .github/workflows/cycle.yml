@@ -24,6 +24,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # Laya (~1GB torch CPU) is installed every run; cache the HF model so
+      # shadow-log doesn't re-download it each cycle.
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-laya-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: hf-laya-${{ runner.os }}-
+
       - name: Run cycle
         run: FORCE_CYCLE=1 python lib/snapshot.py
         env:
@@ -32,6 +40,40 @@ jobs:
           ALPACA_BASE_URL: ${{ secrets.ALPACA_BASE_URL }}
           ALPACA_DATA_URL: ${{ secrets.ALPACA_DATA_URL }}
           ALPACA_LIVE_TRADE: ${{ secrets.ALPACA_LIVE_TRADE }}
+
+      # Record Laya states for candidates we may not trade — the dataset for
+      # calibration/fine-tuning. Log-only: never places orders. Skips when the
+      # market is shut so we don't log stale quotes.
+      - name: Shadow-log candidate states
+        run: python bin/research shadow-log --top 10 --skip-if-closed
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          ALPACA_BASE_URL: ${{ secrets.ALPACA_BASE_URL }}
+          ALPACA_DATA_URL: ${{ secrets.ALPACA_DATA_URL }}
+          HF_HUB_DISABLE_TELEMETRY: "1"
+
+      # Bot #2 — options income bot (separate paper account, dry-run until
+      # ALPACA_OPTIONS_LIVE_TRADE is flipped). Skips until keys are configured.
+      - name: Options cycle (Bot #2)
+        run: |
+          if [ -z "$ALPACA_OPTIONS_API_KEY" ] || [[ "$ALPACA_OPTIONS_API_KEY" == PLACEHOLDER* ]]; then
+            echo "Options keys not configured — skipping Bot #2"
+            exit 0
+          fi
+          python bin/options snapshot
+          python bin/options manage
+          python bin/options scan
+          python bin/options enter
+        env:
+          ALPACA_OPTIONS_API_KEY: ${{ secrets.ALPACA_OPTIONS_API_KEY }}
+          ALPACA_OPTIONS_SECRET_KEY: ${{ secrets.ALPACA_OPTIONS_SECRET_KEY }}
+          ALPACA_BASE_URL: ${{ secrets.ALPACA_BASE_URL }}
+          ALPACA_DATA_URL: ${{ secrets.ALPACA_DATA_URL }}
+          # Paper account: "true" = real API orders, but always against the
+          # paper URL from ALPACA_BASE_URL (never point this at live).
+          ALPACA_OPTIONS_LIVE_TRADE: "true"
+          ALPACA_OPTIONS_UNIVERSE: "SPY,QQQ,IWM"
 
       - name: Commit reports
         run: |

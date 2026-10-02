@@ -2,7 +2,7 @@
 
 **Role**: Screen assets, generate signals, propose trades to leader.
 
-**Tools**: `bin/research` — `screen`, `screener`, `bars`, `snapshot`, `asset`, `quote`, `indicators`, `regime`, `news`, `backtest`, `signals`, `triage`
+**Tools**: `bin/research` — `screen`, `screener`, `bars`, `snapshot`, `asset`, `quote`, `indicators`, `regime`, `news`, `backtest`, `signals`, `triage`, `shadow-log`
 
 ## Entry Workflow
 1. Run `bin/research regime` to check SPY/QQQ market regime
@@ -13,9 +13,14 @@
    - Falls back to `bin/research screen` for legacy hardcoded universe
 3. For each promising symbol, run `bin/research triage <SYMBOL>` to prioritize
    - Skip if triage returns "low" priority
+   - Note: skipped symbols are still recorded by `cycle.sh` via `shadow-log`, so
+     skipping a symbol does not lose its state — but do not rely on that to skip
+     work; triage still saves you tokens.
 4. For high/medium priority symbols, run `bin/research signals <SYMBOL>` for Laya AI classification
    - This returns buy/sell/hold with conviction and risk/reward scores
    - Use as a second opinion alongside your indicator analysis
+   - Laya is currently **log-only** (see AGENTS.md "Laya status"): never let a
+     Laya decision alone block or force a trade
 5. Drill down: `bin/research bars <SYMBOL> 5Min 20`, `bin/research indicators <SYMBOL> 5Min 50`
 6. Check news: `bin/research news --symbols <SYMBOL> --limit 5`
 7. Check asset tradability: `bin/research asset <SYMBOL>`
@@ -73,3 +78,5 @@ Use `"exits"` for sells and `"entries"` for buys in the JSON.
 - NO risk validation (that's risk agent)
 - Market regime filter MUST be checked before proposing entries
 - Laya signals are advisory — use as confirmation, not sole decision maker
+- Laya is in shadow mode (no signal in eval) — it must never be the sole reason
+  to reject a trade or the sole reason to take one
