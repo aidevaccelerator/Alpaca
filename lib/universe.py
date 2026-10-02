@@ -159,3 +159,72 @@ def screen_dynamic(client, min_volume: int = MIN_VOLUME_THRESHOLD,
         "volume_spikes": volume_spikes,
         "sector_leaders": sector_leaders,
     }
+
+
+SYMBOL_SECTOR = {
+    "AAPL": "Technology", "MSFT": "Technology", "GOOGL": "Communication",
+    "AMZN": "Consumer Discretionary", "NVDA": "Technology", "META": "Communication",
+    "TSLA": "Consumer Discretionary", "AVGO": "Technology", "AMD": "Technology",
+    "QCOM": "Technology", "INTC": "Technology", "ORCL": "Technology",
+    "CSCO": "Technology", "CRM": "Technology", "ADBE": "Technology",
+    "NFLX": "Communication", "DIS": "Communication", "COST": "Consumer Staples",
+    "JPM": "Financials", "V": "Financials", "MA": "Financials", "BAC": "Financials",
+    "WMT": "Consumer Staples", "JNJ": "Healthcare", "UNH": "Healthcare",
+    "PG": "Consumer Staples", "HD": "Consumer Discretionary", "ABBV": "Healthcare",
+    "MRK": "Healthcare", "TMO": "Healthcare", "LLY": "Healthcare",
+    "XOM": "Energy", "CVX": "Energy", "SLB": "Energy", "COP": "Energy",
+    "CAT": "Industrials", "BA": "Industrials", "GE": "Industrials",
+    "HON": "Industrials", "UPS": "Industrials", "LMT": "Industrials",
+    "NEE": "Utilities", "DUK": "Utilities", "SO": "Utilities",
+    "AMT": "Real Estate", "PLD": "Real Estate", "O": "Real Estate",
+    "LIN": "Materials", "FCX": "Materials", "NEM": "Materials",
+    "SPY": "Broad Market", "QQQ": "Broad Market", "IWM": "Broad Market",
+    "DIA": "Broad Market", "ARKK": "Thematic", "SOXX": "Thematic",
+    "SMH": "Thematic", "IBB": "Thematic", "KRE": "Thematic", "XME": "Thematic",
+    "BITO": "Thematic", "COIN": "Thematic", "MSTR": "Thematic",
+    "PLTR": "Thematic", "SOFI": "Thematic", "GLD": "Commodities",
+    "SLV": "Commodities", "USO": "Commodities", "UNG": "Energy",
+    "TLT": "Fixed Income", "IEF": "Fixed Income", "HYG": "Fixed Income",
+    "LQD": "Fixed Income", "UUP": "Currency", "JETS": "Industrials",
+    "XBI": "Healthcare", "XLF": "Financials", "XLV": "Healthcare",
+    "XLI": "Industrials", "XLE": "Energy", "XLK": "Technology",
+    "XLY": "Consumer Discretionary", "XLP": "Consumer Staples",
+    "XLU": "Utilities", "XLRE": "Real Estate", "XLB": "Materials",
+    "XLC": "Communication",
+}
+
+ETF_SECTOR = {etf: sector for sector, etf in SECTOR_ETFS.items()}
+
+
+def sector_of(symbol: str) -> str:
+    """Sector for a symbol; falls back to the sector of its ETF twin."""
+    sym = symbol.upper()
+    if sym in SYMBOL_SECTOR:
+        return SYMBOL_SECTOR[sym]
+    if sym in ETF_SECTOR:
+        return ETF_SECTOR[sym]
+    return "Unknown"
+
+
+def sector_exposure_map(client) -> dict:
+    """One-shot {sector: pct_of_equity} for every sector with exposure."""
+    try:
+        positions = client.get_positions()
+        account = client.get_account()
+    except Exception:
+        return {}
+    equity = float(account.get("equity") or 0)
+    if equity <= 0:
+        return {}
+    by_sector: dict[str, float] = {}
+    for p in positions:
+        sec = sector_of(p.get("symbol", ""))
+        if sec in ("Unknown", "Broad Market"):
+            continue
+        by_sector[sec] = by_sector.get(sec, 0.0) + abs(float(p.get("market_value") or 0))
+    return {s: round(v / equity * 100, 2) for s, v in sorted(by_sector.items())}
+
+
+def sector_exposure_pct(client, symbol: str) -> float:
+    """Account % of equity currently exposed to this symbol's sector."""
+    return sector_exposure_map(client).get(sector_of(symbol), 0.0)

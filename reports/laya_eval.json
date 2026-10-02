@@ -1,0 +1,5885 @@
+{
+  "generated_at": "2026-10-02T16:01:28.632897+00:00",
+  "backend": "laya_cpu",
+  "mode": "all",
+  "horizon_hours": 4.0,
+  "threshold_pct": 0.5,
+  "n_snapshots": 343,
+  "n_risk_candidates": 129,
+  "n_signal_candidates": 129,
+  "risk": {
+    "n_cases": 122,
+    "n_scored": 122,
+    "n_dropped_no_forward": 7,
+    "n_laya_errors": 0,
+    "label_dist": {
+      "flat": 65,
+      "up": 29,
+      "down": 28
+    },
+    "accuracy": 0.7377049180327869,
+    "best_constant_baseline": {
+      "decision": "approve",
+      "accuracy": 0.7704918032786885
+    },
+    "binary_accuracy_excl_tighten": 0.7377049180327869,
+    "laya_rule_agreement": 0.9180327868852459,
+    "brier_reject": 0.1900098568032787,
+    "brier_reject_baseline": 0.17683418435904324,
+    "ece": 0.24195491803278688,
+    "mean_fwd_ret_by_laya_decision": {
+      "approve": {
+        "n": 118,
+        "mean_fwd_ret_pct": 0.047
+      },
+      "reject": {
+        "n": 4,
+        "mean_fwd_ret_pct": 0.157
+      }
+    },
+    "confusion_laya": {
+      "approve": {
+        "flat": 62,
+        "up": 28,
+        "down": 28
+      },
+      "reject": {
+        "flat": 3,
+        "up": 1
+      }
+    },
+    "signalability": {
+      "ic_approve_vs_fwd": -0.1144,
+      "ic_reject_vs_fwd": 0.1216,
+      "ic_tighten_vs_fwd": 0.0825,
+      "auc_approve_vs_up": 0.3793,
+      "auc_reject_vs_up": 0.6275,
+      "auc_tighten_vs_up": 0.5696,
+      "n_excl_flat": 57,
+      "base_rate_up_excl_flat": 0.5088
+    },
+    "rule_accuracy": 0.7459016393442623,
+    "mean_fwd_ret_by_rule_decision": {
+      "approve": {
+        "n": 116,
+        "mean_fwd_ret_pct": 0.057
+      },
+      "reject": {
+        "n": 2,
+        "mean_fwd_ret_pct": 0.732
+      },
+      "tighten": {
+        "n": 4,
+        "mean_fwd_ret_pct": -0.482
+      }
+    }
+  },
+  "signal": {
+    "n_cases": 122,
+    "n_scored": 122,
+    "n_dropped_no_forward": 7,
+    "n_laya_errors": 0,
+    "label_dist": {
+      "flat": 65,
+      "up": 29,
+      "down": 28
+    },
+    "accuracy": 0.22950819672131148,
+    "best_constant_baseline": {
+      "decision": "hold",
+      "accuracy": 0.5327868852459017
+    },
+    "tradeable_accuracy_excl_hold": 0.22950819672131148,
+    "laya_rule_agreement": 0.8934426229508197,
+    "brier_buy": 0.24900065688524592,
+    "brier_buy_baseline": 0.181201289975813,
+    "ece": 0.4551459016393443,
+    "mean_fwd_ret_by_laya_decision": {
+      "buy": {
+        "n": 63,
+        "mean_fwd_ret_pct": 0.067
+      },
+      "sell": {
+        "n": 59,
+        "mean_fwd_ret_pct": -0.0
+      }
+    },
+    "confusion_laya": {
+      "buy": {
+        "flat": 31,
+        "up": 16,
+        "down": 16
+      },
+      "sell": {
+        "flat": 34,
+        "up": 13,
+        "down": 12
+      }
+    },
+    "signalability": {
+      "ic_buy_vs_fwd": 0.0694,
+      "ic_sell_vs_fwd": -0.0926,
+      "ic_hold_vs_fwd": 0.1299,
+      "auc_buy_vs_up": 0.4766,
+      "auc_sell_vs_up": 0.5086,
+      "auc_hold_vs_up": 0.6342,
+      "n_excl_flat": 57,
+      "base_rate_up_excl_flat": 0.5088
+    },
+    "rule_accuracy": 0.2540983606557377,
+    "mean_fwd_ret_by_rule_decision": {
+      "buy": {
+        "n": 64,
+        "mean_fwd_ret_pct": 0.064
+      },
+      "hold": {
+        "n": 3,
+        "mean_fwd_ret_pct": 0.155
+      },
+      "sell": {
+        "n": 55,
+        "mean_fwd_ret_pct": -0.006
+      }
+    }
+  },
+  "cases": {
+    "risk": [
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 90.81,
+        "pnl_pct": 12.0,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": 0.033,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.7017,
+          "reject": 0.1923,
+          "tighten": 0.106
+        }
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 104.1,
+        "pnl_pct": 1.879,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": 0.677,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6669,
+          "reject": 0.2194,
+          "tighten": 0.1137
+        }
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "IBB",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 175.36,
+        "current_price": 207.25,
+        "pnl_pct": 18.185,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "IBB@175.36:long",
+        "fwd_ret_pct": 0.068,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "tighten",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6607,
+          "reject": 0.2145,
+          "tighten": 0.1247
+        }
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "INTC",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 128.38,
+        "current_price": 123.04,
+        "pnl_pct": -4.16,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "INTC@128.38:long",
+        "fwd_ret_pct": -2.544,
+        "fwd_time": "2026-09-22T12:05:00+00:00",
+        "label": "down",
+        "rule_decision": "tighten",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.4486,
+          "reject": 0.394,
+          "tighten": 0.1574
+        }
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "IWM",
+        "side": "long",
+        "qty": 1,
+        "entry_price": 295.41,
+        "current_price": 285.33,
+        "pnl_pct": -3.412,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "IWM@295.41:long",
+        "fwd_ret_pct": 0.629,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "up",
+        "rule_decision": "tighten",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.4913,
+          "reject": 0.3533,
+          "tighten": 0.1554
+        }
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "JETS",
+        "side": "long",
+        "qty": 15,
+        "entry_price": 31.13,
+        "current_price": 29.01,
+        "pnl_pct": -6.81,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "JETS@31.13:long",
+        "fwd_ret_pct": 1.482,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "up",
+        "rule_decision": "reject",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.4222,
+          "reject": 0.4012,
+          "tighten": 0.1767
+        }
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 227.48,
+        "pnl_pct": 9.719,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": -0.347,
+        "fwd_time": "2026-09-22T12:10:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6474,
+          "reject": 0.234,
+          "tighten": 0.1186
+        }
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 55.9,
+        "pnl_pct": 3.691,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": -0.268,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6953,
+          "reject": 0.1931,
+          "tighten": 0.1117
+        }
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "XLI",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 182.2,
+        "current_price": 169.98,
+        "pnl_pct": -6.707,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "XLI@182.2:long",
+        "fwd_ret_pct": -0.018,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "reject",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.4846,
+          "reject": 0.3473,
+          "tighten": 0.1681
+        }
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 168.27,
+        "pnl_pct": 7.914,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": 0.178,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6437,
+          "reject": 0.2266,
+          "tighten": 0.1297
+        }
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 91.36,
+        "pnl_pct": 12.679,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": 0.432,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6964,
+          "reject": 0.1875,
+          "tighten": 0.1161
+        }
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 103.915,
+        "pnl_pct": 1.698,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": -0.038,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6673,
+          "reject": 0.2187,
+          "tighten": 0.1141
+        }
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "IWM",
+        "side": "long",
+        "qty": 1,
+        "entry_price": 295.41,
+        "current_price": 288.27,
+        "pnl_pct": -2.417,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "IWM@295.41:long",
+        "fwd_ret_pct": -0.08,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "flat",
+        "rule_decision": "tighten",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.4443,
+          "reject": 0.3825,
+          "tighten": 0.1733
+        }
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 227.5463,
+        "pnl_pct": 9.751,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": 0.749,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6468,
+          "reject": 0.2371,
+          "tighten": 0.116
+        }
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 183.63,
+        "pnl_pct": -0.499,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": 0.545,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.4874,
+          "reject": 0.3165,
+          "tighten": 0.1962
+        }
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 55.375,
+        "pnl_pct": 2.717,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": -0.804,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.7015,
+          "reject": 0.1913,
+          "tighten": 0.1073
+        }
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 168.59,
+        "pnl_pct": 8.119,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": 0.967,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6426,
+          "reject": 0.2319,
+          "tighten": 0.1254
+        }
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 90.61,
+        "pnl_pct": 11.754,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": -0.822,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6937,
+          "reject": 0.1943,
+          "tighten": 0.1121
+        }
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 103.41,
+        "pnl_pct": 1.204,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": 0.097,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6798,
+          "reject": 0.2181,
+          "tighten": 0.102
+        }
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 283.365,
+        "pnl_pct": 1.664,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": 0.363,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.5835,
+          "reject": 0.286,
+          "tighten": 0.1306
+        }
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 225.35,
+        "pnl_pct": 8.691,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": 0.182,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6629,
+          "reject": 0.2293,
+          "tighten": 0.1078
+        }
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 191.555,
+        "pnl_pct": 3.796,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": 0.117,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6414,
+          "reject": 0.2165,
+          "tighten": 0.1421
+        }
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 54.735,
+        "pnl_pct": 1.53,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": -0.192,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.687,
+          "reject": 0.209,
+          "tighten": 0.1041
+        }
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 169.07,
+        "pnl_pct": 8.427,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": -0.201,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6394,
+          "reject": 0.2332,
+          "tighten": 0.1274
+        }
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 89.88,
+        "pnl_pct": 10.853,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": -0.211,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.7033,
+          "reject": 0.185,
+          "tighten": 0.1117
+        }
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 103.425,
+        "pnl_pct": 1.218,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": 1.861,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6816,
+          "reject": 0.2147,
+          "tighten": 0.1037
+        }
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 282.42,
+        "pnl_pct": 1.992,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": 0.479,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6016,
+          "reject": 0.2665,
+          "tighten": 0.1318
+        }
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 225.24,
+        "pnl_pct": 8.638,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": -1.45,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6511,
+          "reject": 0.2396,
+          "tighten": 0.1093
+        }
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 191.83,
+        "pnl_pct": 3.945,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": -0.055,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6536,
+          "reject": 0.2082,
+          "tighten": 0.1383
+        }
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 54.63,
+        "pnl_pct": 1.336,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": 0.037,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6828,
+          "reject": 0.2111,
+          "tighten": 0.1061
+        }
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 168.59,
+        "pnl_pct": 8.119,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": 0.682,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6439,
+          "reject": 0.2342,
+          "tighten": 0.1219
+        }
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 89.69,
+        "pnl_pct": 10.619,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": 0.0,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.7176,
+          "reject": 0.1801,
+          "tighten": 0.1023
+        }
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 103.46,
+        "pnl_pct": 1.253,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": 1.827,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6796,
+          "reject": 0.2147,
+          "tighten": 0.1057
+        }
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 281.78,
+        "pnl_pct": 2.214,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": 0.251,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6066,
+          "reject": 0.2607,
+          "tighten": 0.1327
+        }
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 225.2348,
+        "pnl_pct": 8.636,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": -1.447,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6487,
+          "reject": 0.2379,
+          "tighten": 0.1134
+        }
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 191.0817,
+        "pnl_pct": 3.539,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": 0.337,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6484,
+          "reject": 0.2123,
+          "tighten": 0.1393
+        }
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 54.65,
+        "pnl_pct": 1.373,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": 0.0,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6921,
+          "reject": 0.2042,
+          "tighten": 0.1037
+        }
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 169.8,
+        "pnl_pct": 8.895,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": -0.035,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6467,
+          "reject": 0.2302,
+          "tighten": 0.1231
+        }
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 88.76,
+        "pnl_pct": 9.472,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": 2.405,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.714,
+          "reject": 0.1743,
+          "tighten": 0.1117
+        }
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 103.5,
+        "pnl_pct": 1.292,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": 1.565,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6742,
+          "reject": 0.2194,
+          "tighten": 0.1063
+        }
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 281.1101,
+        "pnl_pct": 2.447,
+        "age_days": 0,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": -0.133,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6058,
+          "reject": 0.2641,
+          "tighten": 0.1301
+        }
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 223.15,
+        "pnl_pct": 7.63,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": 0.542,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6415,
+          "reject": 0.2468,
+          "tighten": 0.1116
+        }
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 188.66,
+        "pnl_pct": 2.227,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": 2.581,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6615,
+          "reject": 0.2019,
+          "tighten": 0.1366
+        }
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 54.64,
+        "pnl_pct": 1.354,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": -0.412,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6796,
+          "reject": 0.2117,
+          "tighten": 0.1088
+        }
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 169.24,
+        "pnl_pct": 8.536,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": 0.165,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6368,
+          "reject": 0.2329,
+          "tighten": 0.1303
+        }
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 90.845,
+        "pnl_pct": 12.044,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": 0.38,
+        "fwd_time": "2026-09-25T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6858,
+          "reject": 0.2032,
+          "tighten": 0.111
+        }
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 105.08,
+        "pnl_pct": 2.838,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": 0.295,
+        "fwd_time": "2026-09-25T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6892,
+          "reject": 0.2062,
+          "tighten": 0.1046
+        }
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 281.17,
+        "pnl_pct": 2.426,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": -0.495,
+        "fwd_time": "2026-09-25T12:40:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.5598,
+          "reject": 0.3078,
+          "tighten": 0.1324
+        }
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 224.25,
+        "pnl_pct": 8.161,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": 0.847,
+        "fwd_time": "2026-09-25T12:10:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6516,
+          "reject": 0.2366,
+          "tighten": 0.1118
+        }
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 193.2,
+        "pnl_pct": 4.687,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": -0.595,
+        "fwd_time": "2026-09-25T13:30:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6385,
+          "reject": 0.2198,
+          "tighten": 0.1417
+        }
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 54.345,
+        "pnl_pct": 0.807,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": 0.515,
+        "fwd_time": "2026-09-25T13:30:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6598,
+          "reject": 0.2241,
+          "tighten": 0.1161
+        }
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 169.62,
+        "pnl_pct": 8.78,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": 0.218,
+        "fwd_time": "2026-09-25T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6406,
+          "reject": 0.2307,
+          "tighten": 0.1288
+        }
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 91.98,
+        "pnl_pct": 13.444,
+        "age_days": 3,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": -1.174,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6881,
+          "reject": 0.1899,
+          "tighten": 0.122
+        }
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 105.59,
+        "pnl_pct": 3.337,
+        "age_days": 3,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": 0.047,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6625,
+          "reject": 0.2269,
+          "tighten": 0.1106
+        }
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 282.28,
+        "pnl_pct": 2.041,
+        "age_days": 1,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": -0.044,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.5675,
+          "reject": 0.2984,
+          "tighten": 0.1341
+        }
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 225.2381,
+        "pnl_pct": 8.637,
+        "age_days": 3,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": -0.07,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6572,
+          "reject": 0.2317,
+          "tighten": 0.1111
+        }
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 192.08,
+        "pnl_pct": 4.08,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": -0.351,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6484,
+          "reject": 0.2136,
+          "tighten": 0.138
+        }
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 54.71,
+        "pnl_pct": 1.484,
+        "age_days": 3,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": 0.146,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6733,
+          "reject": 0.2168,
+          "tighten": 0.1099
+        }
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 169.7645,
+        "pnl_pct": 8.872,
+        "age_days": 3,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": 0.05,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6344,
+          "reject": 0.2407,
+          "tighten": 0.1249
+        }
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 90.87,
+        "pnl_pct": 12.074,
+        "age_days": 3,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": -1.089,
+        "fwd_time": "2026-09-28T13:30:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6865,
+          "reject": 0.2008,
+          "tighten": 0.1127
+        }
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 105.6299,
+        "pnl_pct": 3.376,
+        "age_days": 3,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": -0.199,
+        "fwd_time": "2026-09-28T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6576,
+          "reject": 0.2297,
+          "tighten": 0.1127
+        }
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 282.48,
+        "pnl_pct": 1.971,
+        "age_days": 2,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": 0.706,
+        "fwd_time": "2026-09-28T12:40:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.5401,
+          "reject": 0.3254,
+          "tighten": 0.1345
+        }
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 224.89,
+        "pnl_pct": 8.47,
+        "age_days": 3,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": 1.912,
+        "fwd_time": "2026-09-28T12:20:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6576,
+          "reject": 0.2331,
+          "tighten": 0.1093
+        }
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 191.3,
+        "pnl_pct": 3.658,
+        "age_days": 3,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": -1.62,
+        "fwd_time": "2026-09-28T12:25:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6287,
+          "reject": 0.2257,
+          "tighten": 0.1456
+        }
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 54.785,
+        "pnl_pct": 1.623,
+        "age_days": 3,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": -0.502,
+        "fwd_time": "2026-09-28T13:30:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6799,
+          "reject": 0.2116,
+          "tighten": 0.1085
+        }
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 169.89,
+        "pnl_pct": 8.953,
+        "age_days": 3,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": 0.424,
+        "fwd_time": "2026-09-28T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6339,
+          "reject": 0.2368,
+          "tighten": 0.1294
+        }
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 89.8542,
+        "pnl_pct": 10.822,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": -0.133,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6975,
+          "reject": 0.1956,
+          "tighten": 0.1069
+        }
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 106.25,
+        "pnl_pct": 3.983,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": -0.649,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6914,
+          "reject": 0.2054,
+          "tighten": 0.1032
+        }
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 280.47,
+        "pnl_pct": 2.669,
+        "age_days": 4,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": 0.107,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.5669,
+          "reject": 0.2939,
+          "tighten": 0.1392
+        }
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 229.4,
+        "pnl_pct": 10.645,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": 0.384,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6501,
+          "reject": 0.2417,
+          "tighten": 0.1082
+        }
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 186.17,
+        "pnl_pct": 0.878,
+        "age_days": 5,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": 1.523,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6478,
+          "reject": 0.2044,
+          "tighten": 0.1479
+        }
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 54.74,
+        "pnl_pct": 1.54,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": -0.694,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6913,
+          "reject": 0.2041,
+          "tighten": 0.1046
+        }
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 170.5999,
+        "pnl_pct": 9.408,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": 0.516,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6403,
+          "reject": 0.2392,
+          "tighten": 0.1205
+        }
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 89.785,
+        "pnl_pct": 10.736,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": 0.228,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.7003,
+          "reject": 0.1914,
+          "tighten": 0.1083
+        }
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 105.535,
+        "pnl_pct": 3.283,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": -0.156,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6935,
+          "reject": 0.2051,
+          "tighten": 0.1014
+        }
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 280.19,
+        "pnl_pct": 2.766,
+        "age_days": 5,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": 0.079,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.5805,
+          "reject": 0.2857,
+          "tighten": 0.1339
+        }
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 230.7,
+        "pnl_pct": 11.272,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": 0.351,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6481,
+          "reject": 0.2431,
+          "tighten": 0.1088
+        }
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 188.81,
+        "pnl_pct": 2.308,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": -0.606,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6679,
+          "reject": 0.1963,
+          "tighten": 0.1358
+        }
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 54.38,
+        "pnl_pct": 0.872,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": -0.441,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6757,
+          "reject": 0.2154,
+          "tighten": 0.1089
+        }
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 171.43,
+        "pnl_pct": 9.94,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": -0.286,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6362,
+          "reject": 0.2375,
+          "tighten": 0.1263
+        }
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 89.83,
+        "pnl_pct": 10.792,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": -0.579,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.7207,
+          "reject": 0.1762,
+          "tighten": 0.1031
+        }
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 105.79,
+        "pnl_pct": 3.533,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": -0.605,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.71,
+          "reject": 0.1889,
+          "tighten": 0.1011
+        }
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 280.41,
+        "pnl_pct": 2.689,
+        "age_days": 5,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": 1.061,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.5831,
+          "reject": 0.2829,
+          "tighten": 0.1339
+        }
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 230.18,
+        "pnl_pct": 11.021,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": -0.387,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6569,
+          "reject": 0.2353,
+          "tighten": 0.1078
+        }
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 187.26,
+        "pnl_pct": 1.468,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": -0.764,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6568,
+          "reject": 0.206,
+          "tighten": 0.1372
+        }
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 54.31,
+        "pnl_pct": 0.742,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": -0.838,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6583,
+          "reject": 0.2261,
+          "tighten": 0.1156
+        }
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 171.6,
+        "pnl_pct": 10.049,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": -1.072,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6705,
+          "reject": 0.2124,
+          "tighten": 0.1171
+        }
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 89.3,
+        "pnl_pct": 10.138,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": 0.627,
+        "fwd_time": "2026-09-30T13:30:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.7158,
+          "reject": 0.1803,
+          "tighten": 0.1039
+        }
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 105.16,
+        "pnl_pct": 2.916,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": 1.369,
+        "fwd_time": "2026-09-30T13:25:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.7081,
+          "reject": 0.1899,
+          "tighten": 0.102
+        }
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 277.64,
+        "pnl_pct": 3.651,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": -1.371,
+        "fwd_time": "2026-09-30T12:30:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.5548,
+          "reject": 0.3045,
+          "tighten": 0.1407
+        }
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 229.37,
+        "pnl_pct": 10.63,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": -0.318,
+        "fwd_time": "2026-09-30T12:50:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.659,
+          "reject": 0.2333,
+          "tighten": 0.1077
+        }
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 185.375,
+        "pnl_pct": 0.447,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": 2.08,
+        "fwd_time": "2026-09-30T13:30:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.645,
+          "reject": 0.2123,
+          "tighten": 0.1427
+        }
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 53.88,
+        "pnl_pct": -0.056,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": -0.111,
+        "fwd_time": "2026-09-30T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.4578,
+          "reject": 0.3965,
+          "tighten": 0.1457
+        }
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 169.86,
+        "pnl_pct": 8.933,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": 0.233,
+        "fwd_time": "2026-09-30T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6606,
+          "reject": 0.217,
+          "tighten": 0.1224
+        }
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 90.21,
+        "pnl_pct": 11.26,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": -0.299,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.692,
+          "reject": 0.1979,
+          "tighten": 0.1101
+        }
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 105.8,
+        "pnl_pct": 3.543,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": -0.364,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.7045,
+          "reject": 0.1934,
+          "tighten": 0.1021
+        }
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 280.34,
+        "pnl_pct": 2.714,
+        "age_days": 6,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": 0.369,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.5742,
+          "reject": 0.2887,
+          "tighten": 0.1372
+        }
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 228.8443,
+        "pnl_pct": 10.377,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": 0.859,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6627,
+          "reject": 0.2316,
+          "tighten": 0.1057
+        }
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 187.97,
+        "pnl_pct": 1.853,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": 0.668,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.662,
+          "reject": 0.1991,
+          "tighten": 0.1389
+        }
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 54.15,
+        "pnl_pct": 0.445,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": -0.933,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6503,
+          "reject": 0.2341,
+          "tighten": 0.1157
+        }
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 170.32,
+        "pnl_pct": 9.228,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": -0.05,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6258,
+          "reject": 0.2491,
+          "tighten": 0.1251
+        }
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 89.935,
+        "pnl_pct": 10.921,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": -0.751,
+        "fwd_time": "2026-10-01T13:30:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.7044,
+          "reject": 0.1876,
+          "tighten": 0.1079
+        }
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 105.39,
+        "pnl_pct": 3.142,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": -1.219,
+        "fwd_time": "2026-10-01T13:30:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.693,
+          "reject": 0.2042,
+          "tighten": 0.1028
+        }
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 279.35,
+        "pnl_pct": 3.057,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": 0.464,
+        "fwd_time": "2026-10-01T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.5432,
+          "reject": 0.3168,
+          "tighten": 0.14
+        }
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 230.83,
+        "pnl_pct": 11.335,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": -0.273,
+        "fwd_time": "2026-10-01T12:00:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.667,
+          "reject": 0.2295,
+          "tighten": 0.1035
+        }
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 189.055,
+        "pnl_pct": 2.441,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": -0.971,
+        "fwd_time": "2026-10-01T13:30:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.657,
+          "reject": 0.206,
+          "tighten": 0.137
+        }
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 53.6501,
+        "pnl_pct": -0.482,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": -0.205,
+        "fwd_time": "2026-10-01T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "reject",
+        "probabilities": {
+          "approve": 0.3155,
+          "reject": 0.5169,
+          "tighten": 0.1676
+        }
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 170.23,
+        "pnl_pct": 9.171,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": -1.292,
+        "fwd_time": "2026-10-01T13:30:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6319,
+          "reject": 0.2443,
+          "tighten": 0.1238
+        }
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 89.6685,
+        "pnl_pct": 10.593,
+        "age_days": 9,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": -0.952,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.7044,
+          "reject": 0.1875,
+          "tighten": 0.1082
+        }
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 104.89,
+        "pnl_pct": 2.652,
+        "age_days": 9,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": -3.122,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.7104,
+          "reject": 0.1872,
+          "tighten": 0.1025
+        }
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 278.19,
+        "pnl_pct": 3.46,
+        "age_days": 7,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": -0.237,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.547,
+          "reject": 0.313,
+          "tighten": 0.1401
+        }
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 229.9332,
+        "pnl_pct": 10.902,
+        "age_days": 9,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": 0.249,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6646,
+          "reject": 0.2284,
+          "tighten": 0.107
+        }
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 189.3,
+        "pnl_pct": 2.574,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": -0.243,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6561,
+          "reject": 0.2044,
+          "tighten": 0.1395
+        }
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 53.3,
+        "pnl_pct": -1.132,
+        "age_days": 9,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": -0.141,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "reject",
+        "probabilities": {
+          "approve": 0.377,
+          "reject": 0.4489,
+          "tighten": 0.1741
+        }
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 168.2,
+        "pnl_pct": 7.869,
+        "age_days": 9,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": -1.005,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6462,
+          "reject": 0.2278,
+          "tighten": 0.126
+        }
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "ARKK",
+        "side": "long",
+        "qty": 6,
+        "entry_price": 81.08,
+        "current_price": 88.88,
+        "pnl_pct": 9.62,
+        "age_days": 9,
+        "regime": "uptrend",
+        "lineage": "ARKK@81.08:long",
+        "fwd_ret_pct": 1.474,
+        "fwd_time": "2026-10-02T12:50:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6996,
+          "reject": 0.1859,
+          "tighten": 0.1145
+        }
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "DIS",
+        "side": "long",
+        "qty": 4,
+        "entry_price": 102.18,
+        "current_price": 101.641,
+        "pnl_pct": -0.528,
+        "age_days": 9,
+        "regime": "uptrend",
+        "lineage": "DIS@102.18:long",
+        "fwd_ret_pct": -0.173,
+        "fwd_time": "2026-10-02T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "reject",
+        "probabilities": {
+          "approve": 0.4185,
+          "reject": 0.4329,
+          "tighten": 0.1486
+        }
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "IWM",
+        "side": "short",
+        "qty": -1,
+        "entry_price": 288.16,
+        "current_price": 279.05,
+        "pnl_pct": 3.161,
+        "age_days": 8,
+        "regime": "uptrend",
+        "lineage": "IWM@288.16:short",
+        "fwd_ret_pct": -0.627,
+        "fwd_time": "2026-10-02T12:20:00+00:00",
+        "label": "down",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.537,
+          "reject": 0.3252,
+          "tighten": 0.1379
+        }
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "NVDA",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 207.33,
+        "current_price": 230.52,
+        "pnl_pct": 11.185,
+        "age_days": 9,
+        "regime": "uptrend",
+        "lineage": "NVDA@207.33:long",
+        "fwd_ret_pct": 2.03,
+        "fwd_time": "2026-10-02T12:20:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6561,
+          "reject": 0.2363,
+          "tighten": 0.1075
+        }
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "PLTR",
+        "side": "long",
+        "qty": 2,
+        "entry_price": 184.55,
+        "current_price": 189.05,
+        "pnl_pct": 2.438,
+        "age_days": 9,
+        "regime": "uptrend",
+        "lineage": "PLTR@184.55:long",
+        "fwd_ret_pct": 2.92,
+        "fwd_time": "2026-10-02T13:30:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6659,
+          "reject": 0.1972,
+          "tighten": 0.1369
+        }
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "XLF",
+        "side": "long",
+        "qty": 9,
+        "entry_price": 53.91,
+        "current_price": 53.22,
+        "pnl_pct": -1.28,
+        "age_days": 9,
+        "regime": "uptrend",
+        "lineage": "XLF@53.91:long",
+        "fwd_ret_pct": 1.146,
+        "fwd_time": "2026-10-02T12:55:00+00:00",
+        "label": "up",
+        "rule_decision": "approve",
+        "laya_decision": "reject",
+        "probabilities": {
+          "approve": 0.3111,
+          "reject": 0.5008,
+          "tighten": 0.1881
+        }
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "XLV",
+        "side": "long",
+        "qty": 3,
+        "entry_price": 155.93,
+        "current_price": 166.55,
+        "pnl_pct": 6.811,
+        "age_days": 9,
+        "regime": "uptrend",
+        "lineage": "XLV@155.93:long",
+        "fwd_ret_pct": -0.336,
+        "fwd_time": "2026-10-02T13:30:00+00:00",
+        "label": "flat",
+        "rule_decision": "approve",
+        "laya_decision": "approve",
+        "probabilities": {
+          "approve": 0.6373,
+          "reject": 0.2358,
+          "tighten": 0.1269
+        }
+      }
+    ],
+    "signal": [
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "ARKK",
+        "current_price": 90.81,
+        "change_pct": 0.099,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 53.51,
+          "ema_20": 90.81,
+          "ema_50": 90.71,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.033,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6713,
+          "sell": 0.1945,
+          "hold": 0.1341
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "DIS",
+        "current_price": 104.1,
+        "change_pct": -0.125,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 42.15,
+          "ema_20": 104.4,
+          "ema_50": 104.33,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.677,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5245,
+          "sell": 0.3187,
+          "hold": 0.1568
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "IBB",
+        "current_price": 207.25,
+        "change_pct": 0.043,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 38.18,
+          "ema_20": 207.37,
+          "ema_50": 207.27,
+          "trend_signal": "downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.068,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3557,
+          "sell": 0.4973,
+          "hold": 0.147
+        },
+        "conviction": "weak"
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "INTC",
+        "current_price": 123.04,
+        "change_pct": 1.035,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 48.19,
+          "ema_20": 121.67,
+          "ema_50": 121.93,
+          "trend_signal": "uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -2.544,
+        "fwd_time": "2026-09-22T12:05:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5056,
+          "sell": 0.308,
+          "hold": 0.1864
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "IWM",
+        "current_price": 285.33,
+        "change_pct": -0.088,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 37.33,
+          "ema_20": 285.91,
+          "ema_50": 285.89,
+          "trend_signal": "downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 0.629,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "up",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3547,
+          "sell": 0.4629,
+          "hold": 0.1824
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "JETS",
+        "current_price": 29.01,
+        "change_pct": 0.0,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 65.39,
+          "ema_20": 28.97,
+          "ema_50": 28.89,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 1.482,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6377,
+          "sell": 0.2318,
+          "hold": 0.1305
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "NVDA",
+        "current_price": 227.48,
+        "change_pct": 0.044,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 50.94,
+          "ema_20": 227.37,
+          "ema_50": 226.85,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.347,
+        "fwd_time": "2026-09-22T12:10:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.59,
+          "sell": 0.2523,
+          "hold": 0.1577
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "XLF",
+        "current_price": 55.9,
+        "change_pct": 0.0,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 37.81,
+          "ema_20": 55.94,
+          "ema_50": 55.94,
+          "trend_signal": "downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.268,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.339,
+          "sell": 0.5581,
+          "hold": 0.1029
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "XLI",
+        "current_price": 169.98,
+        "change_pct": 0.0,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 38.12,
+          "ema_20": 170.18,
+          "ema_50": 170.25,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.018,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3043,
+          "sell": 0.5201,
+          "hold": 0.1756
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T03:01:30.505992+00:00",
+        "symbol": "XLV",
+        "current_price": 168.27,
+        "change_pct": -0.438,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 39.76,
+          "ema_20": 169.11,
+          "ema_50": 169.04,
+          "trend_signal": "downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.178,
+        "fwd_time": "2026-09-22T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3293,
+          "sell": 0.5156,
+          "hold": 0.1551
+        },
+        "conviction": "weak"
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "ARKK",
+        "current_price": 91.36,
+        "change_pct": 0.705,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 68.36,
+          "ema_20": 90.94,
+          "ema_50": 90.76,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.432,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6524,
+          "sell": 0.2271,
+          "hold": 0.1205
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "DIS",
+        "current_price": 103.915,
+        "change_pct": -0.302,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 35.14,
+          "ema_20": 104.37,
+          "ema_50": 104.35,
+          "trend_signal": "downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.038,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3405,
+          "sell": 0.5073,
+          "hold": 0.1522
+        },
+        "conviction": "weak"
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "IWM",
+        "current_price": 288.27,
+        "change_pct": 0.942,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 76.59,
+          "ema_20": 286.6,
+          "ema_50": 286.06,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.08,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.4901,
+          "sell": 0.3379,
+          "hold": 0.172
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "NVDA",
+        "current_price": 227.5463,
+        "change_pct": 0.073,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 53.1,
+          "ema_20": 227.4,
+          "ema_50": 227.27,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.749,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5536,
+          "sell": 0.2639,
+          "hold": 0.1824
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "PLTR",
+        "current_price": 183.63,
+        "change_pct": 0.295,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 59.15,
+          "ema_20": 182.98,
+          "ema_50": 182.14,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.545,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.675,
+          "sell": 0.193,
+          "hold": 0.1319
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "XLF",
+        "current_price": 55.375,
+        "change_pct": -0.939,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 10.94,
+          "ema_20": 55.8,
+          "ema_50": 55.91,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.804,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2693,
+          "sell": 0.5571,
+          "hold": 0.1736
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-22T13:58:19.390389+00:00",
+        "symbol": "XLV",
+        "current_price": 168.59,
+        "change_pct": -0.249,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 41.02,
+          "ema_20": 168.82,
+          "ema_50": 169.0,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.967,
+        "fwd_time": "2026-09-22T18:00:00+00:00",
+        "label": "up",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2811,
+          "sell": 0.5926,
+          "hold": 0.1263
+        },
+        "conviction": "weak"
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "ARKK",
+        "current_price": 90.61,
+        "change_pct": -1.092,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 42.23,
+          "ema_20": 90.8,
+          "ema_50": 91.39,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.822,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "down",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3137,
+          "sell": 0.5954,
+          "hold": 0.0909
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "DIS",
+        "current_price": 103.41,
+        "change_pct": -0.395,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 43.25,
+          "ema_20": 103.72,
+          "ema_50": 103.64,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.097,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5003,
+          "sell": 0.3279,
+          "hold": 0.1718
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "IWM",
+        "current_price": 283.365,
+        "change_pct": -1.339,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 36.66,
+          "ema_20": 283.95,
+          "ema_50": 285.67,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.362,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.383,
+          "sell": 0.4482,
+          "hold": 0.1688
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "NVDA",
+        "current_price": 225.35,
+        "change_pct": -1.538,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 29.15,
+          "ema_20": 226.36,
+          "ema_50": 228.02,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.182,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "flat",
+        "rule_action": "hold",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2511,
+          "sell": 0.5971,
+          "hold": 0.1518
+        },
+        "conviction": "weak"
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "PLTR",
+        "current_price": 191.555,
+        "change_pct": 3.549,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 59.41,
+          "ema_20": 190.55,
+          "ema_50": 187.45,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.117,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6992,
+          "sell": 0.1701,
+          "hold": 0.1307
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "XLF",
+        "current_price": 54.735,
+        "change_pct": -0.119,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 35.54,
+          "ema_20": 54.87,
+          "ema_50": 54.9,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.192,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3486,
+          "sell": 0.519,
+          "hold": 0.1323
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T15:30:27.196606+00:00",
+        "symbol": "XLV",
+        "current_price": 169.07,
+        "change_pct": -0.483,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 35.36,
+          "ema_20": 169.72,
+          "ema_50": 170.05,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.201,
+        "fwd_time": "2026-09-23T19:35:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3258,
+          "sell": 0.5551,
+          "hold": 0.1191
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "ARKK",
+        "current_price": 89.88,
+        "change_pct": -1.888,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 39.21,
+          "ema_20": 89.96,
+          "ema_50": 90.2,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.211,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3853,
+          "sell": 0.5034,
+          "hold": 0.1113
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "DIS",
+        "current_price": 103.425,
+        "change_pct": -0.38,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 37.01,
+          "ema_20": 103.52,
+          "ema_50": 103.78,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 1.861,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "up",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3424,
+          "sell": 0.5408,
+          "hold": 0.1168
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "IWM",
+        "current_price": 282.42,
+        "change_pct": -1.668,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 44.22,
+          "ema_20": 282.49,
+          "ema_50": 282.72,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.476,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.285,
+          "sell": 0.5716,
+          "hold": 0.1434
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "NVDA",
+        "current_price": 225.24,
+        "change_pct": -1.586,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 45.83,
+          "ema_20": 225.24,
+          "ema_50": 224.99,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -1.45,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5366,
+          "sell": 0.2996,
+          "hold": 0.1638
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "PLTR",
+        "current_price": 191.83,
+        "change_pct": 3.697,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 61.18,
+          "ema_20": 191.28,
+          "ema_50": 191.21,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.055,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.7092,
+          "sell": 0.1784,
+          "hold": 0.1125
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "XLF",
+        "current_price": 54.63,
+        "change_pct": -0.31,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 31.93,
+          "ema_20": 54.69,
+          "ema_50": 54.75,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 0.037,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3124,
+          "sell": 0.577,
+          "hold": 0.1105
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T19:32:38.176117+00:00",
+        "symbol": "XLV",
+        "current_price": 168.59,
+        "change_pct": -0.765,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 50.91,
+          "ema_20": 168.51,
+          "ema_50": 168.59,
+          "trend_signal": "uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.682,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5251,
+          "sell": 0.28,
+          "hold": 0.1949
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "ARKK",
+        "current_price": 89.69,
+        "change_pct": -2.096,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 39.54,
+          "ema_20": 89.89,
+          "ema_50": 90.1,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.0,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3518,
+          "sell": 0.5368,
+          "hold": 0.1114
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "DIS",
+        "current_price": 103.46,
+        "change_pct": -0.347,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 47.3,
+          "ema_20": 103.53,
+          "ema_50": 103.77,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 1.827,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "up",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2639,
+          "sell": 0.5823,
+          "hold": 0.1538
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "IWM",
+        "current_price": 281.78,
+        "change_pct": -1.891,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 41.45,
+          "ema_20": 282.17,
+          "ema_50": 282.42,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.25,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2575,
+          "sell": 0.5843,
+          "hold": 0.1582
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "NVDA",
+        "current_price": 225.2348,
+        "change_pct": -1.588,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 54.82,
+          "ema_20": 225.32,
+          "ema_50": 224.99,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -1.447,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5836,
+          "sell": 0.2404,
+          "hold": 0.1759
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "PLTR",
+        "current_price": 191.0817,
+        "change_pct": 3.293,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 55.18,
+          "ema_20": 191.51,
+          "ema_50": 191.19,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.337,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.722,
+          "sell": 0.1597,
+          "hold": 0.1182
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "XLF",
+        "current_price": 54.65,
+        "change_pct": -0.274,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 23.35,
+          "ema_20": 54.64,
+          "ema_50": 54.72,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 0.0,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2795,
+          "sell": 0.543,
+          "hold": 0.1775
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-23T23:41:51.135149+00:00",
+        "symbol": "XLV",
+        "current_price": 169.8,
+        "change_pct": -0.053,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 62.11,
+          "ema_20": 168.61,
+          "ema_50": 168.54,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.035,
+        "fwd_time": "2026-09-24T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6078,
+          "sell": 0.2365,
+          "hold": 0.1557
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "ARKK",
+        "current_price": 88.76,
+        "change_pct": -1.125,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 39.54,
+          "ema_20": 89.89,
+          "ema_50": 90.1,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 2.405,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "up",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.379,
+          "sell": 0.505,
+          "hold": 0.116
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "DIS",
+        "current_price": 103.5,
+        "change_pct": 0.039,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 47.3,
+          "ema_20": 103.53,
+          "ema_50": 103.77,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 1.565,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "up",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3285,
+          "sell": 0.511,
+          "hold": 0.1606
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "IWM",
+        "current_price": 281.1101,
+        "change_pct": -0.287,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 41.45,
+          "ema_20": 282.17,
+          "ema_50": 282.42,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 0.133,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2746,
+          "sell": 0.5767,
+          "hold": 0.1488
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "NVDA",
+        "current_price": 223.15,
+        "change_pct": -1.047,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 54.82,
+          "ema_20": 225.32,
+          "ema_50": 224.99,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.542,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5702,
+          "sell": 0.2514,
+          "hold": 0.1784
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "PLTR",
+        "current_price": 188.66,
+        "change_pct": -1.632,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 55.18,
+          "ema_20": 191.51,
+          "ema_50": 191.19,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 2.581,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6914,
+          "sell": 0.1992,
+          "hold": 0.1094
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "XLF",
+        "current_price": 54.64,
+        "change_pct": 0.183,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 23.35,
+          "ema_20": 54.64,
+          "ema_50": 54.72,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.412,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2666,
+          "sell": 0.539,
+          "hold": 0.1944
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T13:01:40.959887+00:00",
+        "symbol": "XLV",
+        "current_price": 169.24,
+        "change_pct": 0.261,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 62.11,
+          "ema_20": 168.61,
+          "ema_50": 168.54,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.165,
+        "fwd_time": "2026-09-24T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6219,
+          "sell": 0.2371,
+          "hold": 0.141
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "ARKK",
+        "current_price": 90.845,
+        "change_pct": 1.198,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 62.52,
+          "ema_20": 90.47,
+          "ema_50": 90.14,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.38,
+        "fwd_time": "2026-09-25T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6895,
+          "sell": 0.1966,
+          "hold": 0.114
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "DIS",
+        "current_price": 105.08,
+        "change_pct": 1.566,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 56.65,
+          "ema_20": 105.06,
+          "ema_50": 104.88,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.295,
+        "fwd_time": "2026-09-25T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5141,
+          "sell": 0.3182,
+          "hold": 0.1677
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "IWM",
+        "current_price": 281.17,
+        "change_pct": -0.266,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 62.28,
+          "ema_20": 280.82,
+          "ema_50": 280.6,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 0.498,
+        "fwd_time": "2026-09-25T12:40:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6083,
+          "sell": 0.2031,
+          "hold": 0.1887
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "NVDA",
+        "current_price": 224.25,
+        "change_pct": -0.559,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 65.81,
+          "ema_20": 223.44,
+          "ema_50": 222.94,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.847,
+        "fwd_time": "2026-09-25T12:10:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6474,
+          "sell": 0.2092,
+          "hold": 0.1434
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "PLTR",
+        "current_price": 193.2,
+        "change_pct": 0.735,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 57.42,
+          "ema_20": 192.97,
+          "ema_50": 192.02,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.595,
+        "fwd_time": "2026-09-25T13:30:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.7112,
+          "sell": 0.1706,
+          "hold": 0.1182
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "XLF",
+        "current_price": 54.345,
+        "change_pct": -0.358,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 48.64,
+          "ema_20": 54.43,
+          "ema_50": 54.44,
+          "trend_signal": "uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 0.515,
+        "fwd_time": "2026-09-25T13:30:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5334,
+          "sell": 0.2826,
+          "hold": 0.1841
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-24T17:11:33.204938+00:00",
+        "symbol": "XLV",
+        "current_price": 169.62,
+        "change_pct": 0.486,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 40.59,
+          "ema_20": 169.81,
+          "ema_50": 170.06,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.218,
+        "fwd_time": "2026-09-25T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2623,
+          "sell": 0.5869,
+          "hold": 0.1509
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "ARKK",
+        "current_price": 91.98,
+        "change_pct": 0.305,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 61.91,
+          "ema_20": 91.44,
+          "ema_50": 90.96,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -1.174,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6836,
+          "sell": 0.2013,
+          "hold": 0.1151
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "DIS",
+        "current_price": 105.59,
+        "change_pct": 0.028,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 70.92,
+          "ema_20": 105.24,
+          "ema_50": 105.07,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.047,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "hold",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.4856,
+          "sell": 0.3566,
+          "hold": 0.1578
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "IWM",
+        "current_price": 282.28,
+        "change_pct": 0.22,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 68.49,
+          "ema_20": 281.65,
+          "ema_50": 281.32,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 0.044,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6124,
+          "sell": 0.2343,
+          "hold": 0.1533
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "NVDA",
+        "current_price": 225.2381,
+        "change_pct": 0.293,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 60.8,
+          "ema_20": 224.25,
+          "ema_50": 223.94,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.07,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6404,
+          "sell": 0.2189,
+          "hold": 0.1407
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "PLTR",
+        "current_price": 192.08,
+        "change_pct": -0.265,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 51.36,
+          "ema_20": 192.56,
+          "ema_50": 192.75,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.351,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2678,
+          "sell": 0.6223,
+          "hold": 0.1098
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "XLF",
+        "current_price": 54.71,
+        "change_pct": 0.33,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 57.51,
+          "ema_20": 54.5,
+          "ema_50": 54.46,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 0.146,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6499,
+          "sell": 0.2136,
+          "hold": 0.1365
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T13:01:40.267647+00:00",
+        "symbol": "XLV",
+        "current_price": 169.7645,
+        "change_pct": -0.062,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 39.96,
+          "ema_20": 170.16,
+          "ema_50": 169.96,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.05,
+        "fwd_time": "2026-09-25T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5492,
+          "sell": 0.309,
+          "hold": 0.1419
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "ARKK",
+        "current_price": 90.87,
+        "change_pct": -0.905,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 49.32,
+          "ema_20": 90.85,
+          "ema_50": 90.79,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -1.089,
+        "fwd_time": "2026-09-28T13:30:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6817,
+          "sell": 0.1917,
+          "hold": 0.1265
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "DIS",
+        "current_price": 105.6299,
+        "change_pct": 0.066,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 61.16,
+          "ema_20": 105.27,
+          "ema_50": 105.12,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.199,
+        "fwd_time": "2026-09-28T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5987,
+          "sell": 0.2568,
+          "hold": 0.1445
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "IWM",
+        "current_price": 282.48,
+        "change_pct": 0.291,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 51.73,
+          "ema_20": 282.3,
+          "ema_50": 281.76,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.701,
+        "fwd_time": "2026-09-28T12:40:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5652,
+          "sell": 0.2224,
+          "hold": 0.2124
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "NVDA",
+        "current_price": 224.89,
+        "change_pct": 0.138,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 50.74,
+          "ema_20": 224.77,
+          "ema_50": 224.62,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 1.912,
+        "fwd_time": "2026-09-28T12:20:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5878,
+          "sell": 0.2459,
+          "hold": 0.1664
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "PLTR",
+        "current_price": 191.3,
+        "change_pct": -0.67,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 45.53,
+          "ema_20": 191.61,
+          "ema_50": 191.81,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -1.62,
+        "fwd_time": "2026-09-28T12:25:00+00:00",
+        "label": "down",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.201,
+          "sell": 0.7107,
+          "hold": 0.0883
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "XLF",
+        "current_price": 54.785,
+        "change_pct": 0.468,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 57.54,
+          "ema_20": 54.7,
+          "ema_50": 54.59,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.502,
+        "fwd_time": "2026-09-28T13:30:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6422,
+          "sell": 0.2026,
+          "hold": 0.1552
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-25T17:01:44.342003+00:00",
+        "symbol": "XLV",
+        "current_price": 169.89,
+        "change_pct": 0.012,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 50.87,
+          "ema_20": 169.79,
+          "ema_50": 169.71,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.424,
+        "fwd_time": "2026-09-28T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5612,
+          "sell": 0.2584,
+          "hold": 0.1805
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "ARKK",
+        "current_price": 89.8542,
+        "change_pct": -1.009,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 50.25,
+          "ema_20": 90.8,
+          "ema_50": 90.87,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.133,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2708,
+          "sell": 0.6076,
+          "hold": 0.1216
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "DIS",
+        "current_price": 106.25,
+        "change_pct": 0.094,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 45.02,
+          "ema_20": 105.51,
+          "ema_50": 105.48,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.649,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.546,
+          "sell": 0.3058,
+          "hold": 0.1482
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "IWM",
+        "current_price": 280.47,
+        "change_pct": -0.532,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 22.44,
+          "ema_20": 282.03,
+          "ema_50": 282.2,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.107,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2688,
+          "sell": 0.5388,
+          "hold": 0.1923
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "NVDA",
+        "current_price": 229.4,
+        "change_pct": 1.924,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 81.22,
+          "ema_20": 225.69,
+          "ema_50": 224.93,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.384,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.4729,
+          "sell": 0.3631,
+          "hold": 0.1639
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "PLTR",
+        "current_price": 186.17,
+        "change_pct": -1.845,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 17.41,
+          "ema_20": 190.42,
+          "ema_50": 191.29,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 1.523,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2698,
+          "sell": 0.6076,
+          "hold": 0.1227
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "XLF",
+        "current_price": 54.74,
+        "change_pct": -0.182,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 56.29,
+          "ema_20": 54.81,
+          "ema_50": 54.79,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.694,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6009,
+          "sell": 0.2448,
+          "hold": 0.1542
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T13:01:40.476848+00:00",
+        "symbol": "XLV",
+        "current_price": 170.5999,
+        "change_pct": -0.059,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 63.52,
+          "ema_20": 170.52,
+          "ema_50": 170.15,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.516,
+        "fwd_time": "2026-09-28T17:05:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6249,
+          "sell": 0.2139,
+          "hold": 0.1612
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "ARKK",
+        "current_price": 89.785,
+        "change_pct": -1.085,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 53.36,
+          "ema_20": 89.69,
+          "ema_50": 89.71,
+          "trend_signal": "uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.228,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6792,
+          "sell": 0.1939,
+          "hold": 0.1269
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "DIS",
+        "current_price": 105.535,
+        "change_pct": -0.579,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 53.33,
+          "ema_20": 105.47,
+          "ema_50": 105.6,
+          "trend_signal": "uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.156,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5394,
+          "sell": 0.272,
+          "hold": 0.1886
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "IWM",
+        "current_price": 280.19,
+        "change_pct": -0.631,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 52.27,
+          "ema_20": 279.89,
+          "ema_50": 280.1,
+          "trend_signal": "uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.079,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.461,
+          "sell": 0.3017,
+          "hold": 0.2373
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "NVDA",
+        "current_price": 230.7,
+        "change_pct": 2.501,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 58.11,
+          "ema_20": 230.76,
+          "ema_50": 230.3,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.351,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.4887,
+          "sell": 0.3301,
+          "hold": 0.1812
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "PLTR",
+        "current_price": 188.81,
+        "change_pct": -0.453,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 51.03,
+          "ema_20": 188.6,
+          "ema_50": 188.49,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.606,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.7765,
+          "sell": 0.1211,
+          "hold": 0.1024
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "XLF",
+        "current_price": 54.38,
+        "change_pct": -0.839,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 47.16,
+          "ema_20": 54.38,
+          "ema_50": 54.49,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.441,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2597,
+          "sell": 0.5791,
+          "hold": 0.1612
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-28T17:01:41.628425+00:00",
+        "symbol": "XLV",
+        "current_price": 171.43,
+        "change_pct": 0.428,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 63.26,
+          "ema_20": 171.2,
+          "ema_50": 170.92,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.286,
+        "fwd_time": "2026-09-29T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6335,
+          "sell": 0.2266,
+          "hold": 0.1398
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "ARKK",
+        "current_price": 89.83,
+        "change_pct": 0.65,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 33.21,
+          "ema_20": 89.45,
+          "ema_50": 89.68,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.579,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3821,
+          "sell": 0.5174,
+          "hold": 0.1005
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "DIS",
+        "current_price": 105.79,
+        "change_pct": 0.189,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 65.14,
+          "ema_20": 105.13,
+          "ema_50": 105.3,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.605,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "sell",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.4371,
+          "sell": 0.413,
+          "hold": 0.15
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "IWM",
+        "current_price": 280.41,
+        "change_pct": 0.139,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 41.76,
+          "ema_20": 280.21,
+          "ema_50": 280.41,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -1.05,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2951,
+          "sell": 0.5451,
+          "hold": 0.1598
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "NVDA",
+        "current_price": 230.18,
+        "change_pct": 0.577,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 40.97,
+          "ema_20": 229.36,
+          "ema_50": 230.15,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.387,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2757,
+          "sell": 0.5705,
+          "hold": 0.1538
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "PLTR",
+        "current_price": 187.26,
+        "change_pct": -0.117,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 36.11,
+          "ema_20": 188.02,
+          "ema_50": 188.54,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.764,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3021,
+          "sell": 0.6022,
+          "hold": 0.0957
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "XLF",
+        "current_price": 54.31,
+        "change_pct": 0.221,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 38.15,
+          "ema_20": 54.24,
+          "ema_50": 54.31,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.838,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3423,
+          "sell": 0.5395,
+          "hold": 0.1182
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T13:02:17.152188+00:00",
+        "symbol": "XLV",
+        "current_price": 171.6,
+        "change_pct": 0.199,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 51.14,
+          "ema_20": 171.26,
+          "ema_50": 171.25,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -1.072,
+        "fwd_time": "2026-09-29T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.609,
+          "sell": 0.2493,
+          "hold": 0.1417
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "ARKK",
+        "current_price": 89.3,
+        "change_pct": 0.056,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 49.64,
+          "ema_20": 89.3,
+          "ema_50": 89.46,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.627,
+        "fwd_time": "2026-09-30T13:30:00+00:00",
+        "label": "up",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3248,
+          "sell": 0.5235,
+          "hold": 0.1517
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "DIS",
+        "current_price": 105.16,
+        "change_pct": -0.407,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 47.13,
+          "ema_20": 105.22,
+          "ema_50": 105.29,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 1.369,
+        "fwd_time": "2026-09-30T13:25:00+00:00",
+        "label": "up",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2452,
+          "sell": 0.6183,
+          "hold": 0.1365
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "IWM",
+        "current_price": 277.64,
+        "change_pct": -0.85,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 32.68,
+          "ema_20": 277.89,
+          "ema_50": 278.74,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 1.39,
+        "fwd_time": "2026-09-30T12:30:00+00:00",
+        "label": "up",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.343,
+          "sell": 0.4789,
+          "hold": 0.1781
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "NVDA",
+        "current_price": 229.37,
+        "change_pct": 0.223,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 37.9,
+          "ema_20": 229.94,
+          "ema_50": 230.08,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.318,
+        "fwd_time": "2026-09-30T12:50:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3455,
+          "sell": 0.4717,
+          "hold": 0.1827
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "PLTR",
+        "current_price": 185.375,
+        "change_pct": -1.123,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 40.59,
+          "ema_20": 186.03,
+          "ema_50": 186.41,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 2.08,
+        "fwd_time": "2026-09-30T13:30:00+00:00",
+        "label": "up",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2272,
+          "sell": 0.6719,
+          "hold": 0.1009
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "XLF",
+        "current_price": 53.88,
+        "change_pct": -0.572,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 48.05,
+          "ema_20": 53.85,
+          "ema_50": 53.96,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.111,
+        "fwd_time": "2026-09-30T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.26,
+          "sell": 0.632,
+          "hold": 0.108
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-29T17:11:46.660719+00:00",
+        "symbol": "XLV",
+        "current_price": 169.86,
+        "change_pct": -0.817,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 53.62,
+          "ema_20": 169.63,
+          "ema_50": 169.84,
+          "trend_signal": "uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.233,
+        "fwd_time": "2026-09-30T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.511,
+          "sell": 0.3089,
+          "hold": 0.1801
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "ARKK",
+        "current_price": 90.21,
+        "change_pct": 0.85,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 54.39,
+          "ema_20": 89.35,
+          "ema_50": 89.29,
+          "trend_signal": "downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.299,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3508,
+          "sell": 0.5139,
+          "hold": 0.1353
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "DIS",
+        "current_price": 105.8,
+        "change_pct": 0.37,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 64.06,
+          "ema_20": 105.17,
+          "ema_50": 105.18,
+          "trend_signal": "uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.364,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6478,
+          "sell": 0.2332,
+          "hold": 0.119
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "IWM",
+        "current_price": 280.34,
+        "change_pct": 0.477,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 89.37,
+          "ema_20": 279.23,
+          "ema_50": 278.46,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.367,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.4615,
+          "sell": 0.3576,
+          "hold": 0.1809
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "NVDA",
+        "current_price": 228.8443,
+        "change_pct": 0.719,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 55.85,
+          "ema_20": 228.11,
+          "ema_50": 228.76,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.859,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "up",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3032,
+          "sell": 0.5173,
+          "hold": 0.1795
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "PLTR",
+        "current_price": 187.97,
+        "change_pct": 0.535,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 68.6,
+          "ema_20": 186.09,
+          "ema_50": 185.87,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.668,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6656,
+          "sell": 0.2048,
+          "hold": 0.1296
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "XLF",
+        "current_price": 54.15,
+        "change_pct": 0.259,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 51.85,
+          "ema_20": 54.01,
+          "ema_50": 53.93,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.933,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.591,
+          "sell": 0.2619,
+          "hold": 0.1471
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T13:01:51.476980+00:00",
+        "symbol": "XLV",
+        "current_price": 170.32,
+        "change_pct": -0.24,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 66.59,
+          "ema_20": 170.42,
+          "ema_50": 170.04,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.05,
+        "fwd_time": "2026-09-30T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6063,
+          "sell": 0.2458,
+          "hold": 0.1479
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "ARKK",
+        "current_price": 89.935,
+        "change_pct": 0.542,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 54.34,
+          "ema_20": 89.92,
+          "ema_50": 89.75,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.751,
+        "fwd_time": "2026-10-01T13:30:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6964,
+          "sell": 0.1909,
+          "hold": 0.1127
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "DIS",
+        "current_price": 105.39,
+        "change_pct": -0.019,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 41.93,
+          "ema_20": 105.64,
+          "ema_50": 105.74,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -1.219,
+        "fwd_time": "2026-10-01T13:30:00+00:00",
+        "label": "down",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2512,
+          "sell": 0.6151,
+          "hold": 0.1338
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "IWM",
+        "current_price": 279.35,
+        "change_pct": 0.122,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 45.0,
+          "ema_20": 279.49,
+          "ema_50": 279.61,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.462,
+        "fwd_time": "2026-10-01T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2816,
+          "sell": 0.54,
+          "hold": 0.1784
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "NVDA",
+        "current_price": 230.83,
+        "change_pct": 1.593,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 58.65,
+          "ema_20": 230.51,
+          "ema_50": 230.35,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.273,
+        "fwd_time": "2026-10-01T12:00:00+00:00",
+        "label": "flat",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5823,
+          "sell": 0.264,
+          "hold": 0.1536
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "PLTR",
+        "current_price": 189.055,
+        "change_pct": 1.115,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 45.18,
+          "ema_20": 189.64,
+          "ema_50": 189.36,
+          "trend_signal": "downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.971,
+        "fwd_time": "2026-10-01T13:30:00+00:00",
+        "label": "down",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.282,
+          "sell": 0.6014,
+          "hold": 0.1166
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "XLF",
+        "current_price": 53.6501,
+        "change_pct": -0.666,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 37.65,
+          "ema_20": 53.71,
+          "ema_50": 53.8,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.205,
+        "fwd_time": "2026-10-01T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3163,
+          "sell": 0.5658,
+          "hold": 0.1178
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-09-30T17:11:49.998349+00:00",
+        "symbol": "XLV",
+        "current_price": 170.23,
+        "change_pct": -0.293,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 54.77,
+          "ema_20": 170.09,
+          "ema_50": 170.09,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -1.292,
+        "fwd_time": "2026-10-01T13:30:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6378,
+          "sell": 0.209,
+          "hold": 0.1532
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "ARKK",
+        "current_price": 89.6685,
+        "change_pct": 0.638,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 21.02,
+          "ema_20": 89.53,
+          "ema_50": 89.74,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.952,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "buy",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2547,
+          "sell": 0.6116,
+          "hold": 0.1336
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "DIS",
+        "current_price": 104.89,
+        "change_pct": -0.01,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 38.68,
+          "ema_20": 105.37,
+          "ema_50": 105.45,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -3.122,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3271,
+          "sell": 0.5062,
+          "hold": 0.1667
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "IWM",
+        "current_price": 278.19,
+        "change_pct": 0.108,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 29.5,
+          "ema_20": 278.64,
+          "ema_50": 279.03,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 0.237,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "hold",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2931,
+          "sell": 0.4994,
+          "hold": 0.2075
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "NVDA",
+        "current_price": 229.9332,
+        "change_pct": 0.68,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 50.71,
+          "ema_20": 230.02,
+          "ema_50": 230.37,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 0.249,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2546,
+          "sell": 0.6041,
+          "hold": 0.1413
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "PLTR",
+        "current_price": 189.3,
+        "change_pct": 1.203,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 30.01,
+          "ema_20": 187.85,
+          "ema_50": 188.6,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.243,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3154,
+          "sell": 0.5707,
+          "hold": 0.1139
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "XLF",
+        "current_price": 53.3,
+        "change_pct": -0.187,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 30.4,
+          "ema_20": 53.5,
+          "ema_50": 53.59,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": -0.141,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3153,
+          "sell": 0.5417,
+          "hold": 0.143
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T13:01:52.399864+00:00",
+        "symbol": "XLV",
+        "current_price": 168.2,
+        "change_pct": -0.131,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 32.76,
+          "ema_20": 169.05,
+          "ema_50": 169.62,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -1.005,
+        "fwd_time": "2026-10-01T17:05:00+00:00",
+        "label": "down",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3212,
+          "sell": 0.5171,
+          "hold": 0.1617
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "ARKK",
+        "current_price": 88.88,
+        "change_pct": -0.247,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 43.27,
+          "ema_20": 88.97,
+          "ema_50": 89.22,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 1.474,
+        "fwd_time": "2026-10-02T12:50:00+00:00",
+        "label": "up",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.2603,
+          "sell": 0.595,
+          "hold": 0.1446
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "DIS",
+        "current_price": 101.641,
+        "change_pct": -3.107,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 35.68,
+          "ema_20": 101.86,
+          "ema_50": 102.53,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.173,
+        "fwd_time": "2026-10-02T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3456,
+          "sell": 0.5257,
+          "hold": 0.1287
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "IWM",
+        "current_price": 279.05,
+        "change_pct": 0.417,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 61.89,
+          "ema_20": 278.2,
+          "ema_50": 277.36,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 0.631,
+        "fwd_time": "2026-10-02T12:20:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.553,
+          "sell": 0.2393,
+          "hold": 0.2076
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "NVDA",
+        "current_price": 230.52,
+        "change_pct": 0.937,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 54.64,
+          "ema_20": 230.23,
+          "ema_50": 230.01,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 2.03,
+        "fwd_time": "2026-10-02T12:20:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.58,
+          "sell": 0.2513,
+          "hold": 0.1686
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "PLTR",
+        "current_price": 189.05,
+        "change_pct": 1.069,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 54.51,
+          "ema_20": 188.64,
+          "ema_50": 188.77,
+          "trend_signal": "uptrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": 2.92,
+        "fwd_time": "2026-10-02T13:30:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.6097,
+          "sell": 0.2283,
+          "hold": 0.162
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "XLF",
+        "current_price": 53.22,
+        "change_pct": -0.337,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 53.58,
+          "ema_20": 53.2,
+          "ema_50": 53.13,
+          "trend_signal": "strong_uptrend",
+          "daily_regime": "downtrend"
+        },
+        "fwd_ret_pct": 1.146,
+        "fwd_time": "2026-10-02T12:55:00+00:00",
+        "label": "up",
+        "rule_action": "buy",
+        "laya_decision": "buy",
+        "probabilities": {
+          "buy": 0.5903,
+          "sell": 0.2494,
+          "hold": 0.1604
+        },
+        "conviction": "moderate"
+      },
+      {
+        "t": "2026-10-01T17:11:41.784374+00:00",
+        "symbol": "XLV",
+        "current_price": 166.55,
+        "change_pct": -1.11,
+        "regime": "uptrend",
+        "indicators": {
+          "rsi_14": 37.44,
+          "ema_20": 166.72,
+          "ema_50": 167.31,
+          "trend_signal": "strong_downtrend",
+          "daily_regime": "uptrend"
+        },
+        "fwd_ret_pct": -0.336,
+        "fwd_time": "2026-10-02T13:30:00+00:00",
+        "label": "flat",
+        "rule_action": "sell",
+        "laya_decision": "sell",
+        "probabilities": {
+          "buy": 0.3585,
+          "sell": 0.529,
+          "hold": 0.1125
+        },
+        "conviction": "moderate"
+      }
+    ]
+  }
+}

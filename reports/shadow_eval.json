@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-10-02T15:54:44.512997+00:00",
+  "horizon_hours": 4.0,
+  "threshold_pct": 0.5,
+  "n_logged_cases": 5,
+  "log_header": {
+    "schema_version": 1,
+    "generated_at": "2026-10-02T15:54:12.207914+00:00",
+    "backend": "laya_cpu",
+    "model": "convaiinnovations/laya",
+    "regime": "uptrend",
+    "universe_source": "screener_top_movers",
+    "indicator_timeframe": "5Min",
+    "n_cases": 5
+  },
+  "shadow_metrics": {
+    "n_cases": 0,
+    "n_unscorable": 5,
+    "n_with_action": 0,
+    "n_symbols": 0,
+    "label_dist": {},
+    "regime_dist": {},
+    "sector_dist": {},
+    "held_dist": {}
+  },
+  "shadow_cases": []
+}

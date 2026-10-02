@@ -32,3 +32,12 @@ if [ "${FORCE_CYCLE:-}" != "1" ]; then
     fi
   fi
 fi
+
+# Shadow-log candidate states (Laya sees symbols we may not trade).
+# Never places orders. Costs ~20s (model load) + ~2 API calls per symbol;
+# tune with SHADOW_TOP. Set SHADOW_SKIP=1 to bypass.
+if [ "${SHADOW_SKIP:-}" != "1" ]; then
+  echo "shadow-log (top ${SHADOW_TOP:-10})..."
+  $PYTHON bin/research shadow-log --top "${SHADOW_TOP:-10}" \
+    || echo "shadow-log failed (non-fatal)"
+fi

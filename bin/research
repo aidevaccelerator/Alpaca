@@ -128,7 +128,7 @@ def cmd_regime():
     except Exception as e:
         print(json.dumps({"error": str(e)}))
         sys.exit(1)
-    from lib.indicators import ema, compute_all
+    from lib.indicators import ema
     spy_close = [b.get("c", 0) for b in spy_bars]
     qqq_close = [b.get("c", 0) for b in qqq_bars]
     spy_e20 = ema(spy_close, 20)
@@ -315,7 +315,6 @@ def cmd_triage():
     symbol = sys.argv[2]
     try:
         bars = client.get_bars(symbol, timeframe="1Day", limit=50)
-        snap = client.get_snapshots([symbol])
     except Exception as e:
         print(json.dumps({"error": str(e)}))
         sys.exit(1)
@@ -330,6 +329,169 @@ def cmd_triage():
     result = triage_symbol(symbol, "unknown", indicators, regime)
     result["regime"] = regime
     print(json.dumps(result, indent=2, default=str))
+
+
+def cmd_eval():
+    import argparse
+    from lib.laya_eval import run_eval, HORIZON_HOURS_DEFAULT, THRESHOLD_PCT_DEFAULT
+    parser = argparse.ArgumentParser(prog="research eval", add_help=True)
+    parser.add_argument("mode", nargs="?", default="all", choices=["risk", "signal", "all"])
+    parser.add_argument("--horizon", type=float, default=HORIZON_HOURS_DEFAULT,
+                        help="forward-return horizon in hours (default: 4)")
+    parser.add_argument("--threshold", type=float, default=THRESHOLD_PCT_DEFAULT,
+                        help="flat-band threshold in percent (default: 0.5)")
+    parser.add_argument("--max", type=int, default=None, dest="max_cases",
+                        help="cap cases per track")
+    parser.add_argument("--no-laya", action="store_true",
+                        help="build cases + baselines only, skip model calls")
+    args = parser.parse_args(sys.argv[2:])
+    summary = run_eval(
+        mode=args.mode,
+        client=client,
+        reports_dir=Path(cfg.reports_dir),
+        horizon_hours=args.horizon,
+        threshold_pct=args.threshold,
+        max_cases=args.max_cases,
+        use_laya=not args.no_laya,
+    )
+    print(json.dumps(summary, indent=2, default=str))
+
+
+def _regime_from_spy():
+    spy_bars = client.get_bars("SPY", timeframe="1Day", limit=50)
+    spy_close = [b.get("c", 0) for b in spy_bars]
+    from lib.indicators import ema as _ema
+    e20 = _ema(spy_close, 20)
+    e50 = _ema(spy_close, 50)
+    if e20[-1] is None or e50[-1] is None:
+        return "unknown"
+    return "uptrend" if e20[-1] > e50[-1] else "downtrend"
+
+
+def cmd_shadow_log():
+    """Log Laya states for candidate symbols — including ones we won't trade."""
+    import argparse
+    from datetime import datetime, timezone
+    parser = argparse.ArgumentParser(prog="research shadow-log")
+    parser.add_argument("--top", type=int, default=15, dest="top_n",
+                        help="candidates per cycle (default: 15, ranked by |change|)")
+    parser.add_argument("--symbols", default=None,
+                        help="comma list to log instead of the screened top movers")
+    parser.add_argument("--tf", default="5Min", help="indicator timeframe (default: 5Min)")
+    parser.add_argument("--skip-if-closed", action="store_true",
+                        help="exit early when reports/clock.json says the market is shut")
+    args = parser.parse_args(sys.argv[2:])
+
+    if args.skip_if_closed:
+        clock_file = Path(cfg.reports_dir) / "clock.json"
+        try:
+            is_open = json.loads(clock_file.read_text()).get("is_open", False)
+        except (OSError, json.JSONDecodeError):
+            is_open = False
+        if not is_open:
+            print(json.dumps({"logged": 0, "skipped": "market closed"}))
+            return
+
+    from lib.indicators import compute_all
+    from lib.laya_signals import BACKEND, LAYA_CPU_MODEL, classify_signal
+    from lib import shadow_log as slog
+    from lib.universe import screen_dynamic, sector_exposure_map, sector_of
+
+    try:
+        if args.symbols:
+            symbols = [s.strip().upper() for s in args.symbols.split(",") if s.strip()]
+        else:
+            screen = screen_dynamic(client)
+            symbols = [r["symbol"] for r in screen.get("top_movers", [])][:args.top_n]
+        if not symbols:
+            print(json.dumps({"error": "no candidate symbols", "logged": 0}))
+            return
+        regime = _regime_from_spy()
+        exposure = sector_exposure_map(client)
+        try:
+            held = {p.get("symbol") for p in client.get_positions()}
+        except Exception:
+            held = set()
+    except Exception as e:
+        print(json.dumps({"error": str(e), "logged": 0}))
+        sys.exit(1)
+
+    ts = datetime.now(timezone.utc)
+    rows = []
+    errors = 0
+    for sym in symbols:
+        try:
+            bars = client.get_bars(sym, timeframe=args.tf, limit=50)
+            daily = client.get_bars(sym, timeframe="1Day", limit=50)
+            if len(bars) < 30:
+                errors += 1
+                continue
+            indicators = compute_all(bars, daily)
+            snap = client.get_snapshots([sym]).get(sym, {})
+            db = snap.get("dailyBar", {})
+            lq = snap.get("latestQuote", {}) or snap.get("latestTrade", {})
+            price = float(lq.get("p") or db.get("c") or 0)
+            change_pct = ((db["c"] - db["o"]) / db["o"] * 100) if db.get("o") else 0.0
+        except Exception as e:
+            errors += 1
+            print(f"shadow-log {sym}: {e}", file=sys.stderr)
+            continue
+        if price <= 0:
+            errors += 1
+            continue
+        sector = sector_of(sym)
+        signal = classify_signal(sym, price, change_pct, indicators, regime)
+        if signal.get("error"):
+            errors += 1
+        rows.append(slog.build_row(
+            symbol=sym, ts=ts, price=price, change_pct=change_pct,
+            indicators=indicators, regime=regime, sector=sector,
+            sector_exposure_pct=exposure.get(sector, 0.0),
+            held=sym in held, signal=signal, backend=BACKEND,
+        ))
+
+    header = {
+        "schema_version": slog.SHADOW_SCHEMA_VERSION,
+        "generated_at": ts.isoformat(),
+        "backend": BACKEND,
+        "model": str(LAYA_CPU_MODEL),
+        "regime": regime,
+        "universe_source": "explicit" if args.symbols else "screener_top_movers",
+        "indicator_timeframe": args.tf,
+        "n_cases": len(rows),
+    }
+    path = slog.append_cases(Path(cfg.reports_dir), rows, header=header) if rows else None
+    actions: dict[str, int] = {}
+    for r in rows:
+        actions[str(r["action"])] = actions.get(str(r["action"]), 0) + 1
+    print(json.dumps({
+        "logged": len(rows),
+        "errors": errors,
+        "backend": BACKEND,
+        "regime": regime,
+        "timeframe": args.tf,
+        "actions": actions,
+        "symbols": [r["symbol"] for r in rows],
+        "n_held": sum(1 for r in rows if r["held"]),
+        "file": str(path) if path else None,
+    }, indent=2, default=str))
+
+
+def cmd_shadow_score():
+    """Join forward outcomes onto logged shadow cases and score them."""
+    import argparse
+    from lib import shadow_log as slog
+    from lib.laya_eval import HORIZON_HOURS_DEFAULT, THRESHOLD_PCT_DEFAULT
+    parser = argparse.ArgumentParser(prog="research shadow-score")
+    parser.add_argument("--horizon", type=float, default=HORIZON_HOURS_DEFAULT)
+    parser.add_argument("--threshold", type=float, default=THRESHOLD_PCT_DEFAULT)
+    parser.add_argument("--since", default=None, help="only score shards from YYYY-MM-DD.ndjson onward")
+    args = parser.parse_args(sys.argv[2:])
+    summary = slog.run_score(
+        reports_dir=Path(cfg.reports_dir), client=client,
+        horizon_hours=args.horizon, threshold_pct=args.threshold, since=args.since,
+    )
+    print(json.dumps(summary, indent=2, default=str))
 
 
 def cmd_help():
@@ -349,6 +511,13 @@ Usage:
   research signals <sym> [tf]            Laya AI signal classification (buy/sell/hold + conviction)
   research assess <sym> [--pnl PCT]      Laya AI risk assessment for open position
   research triage <sym>                  Laya AI priority triage for symbol
+  research eval [risk|signal|all]        Replay Laya on logged states, score vs forward returns
+                                         [--horizon H] [--threshold PCT] [--max N] [--no-laya]
+  research shadow-log [--top N]          Log Laya states for candidate symbols (incl. skipped ones)
+                                         [--symbols A,B] [--tf 5Min] [--skip-if-closed]
+                                         — appends reports/shadow/*.ndjson
+  research shadow-score                  Score logged shadow cases vs forward returns
+                                         [--horizon H] [--threshold PCT] [--since YYYY-MM-DD]
 """)
 
 
@@ -366,6 +535,9 @@ CMDS = {
     "signals": cmd_signals,
     "assess": cmd_assess,
     "triage": cmd_triage,
+    "eval": cmd_eval,
+    "shadow-log": cmd_shadow_log,
+    "shadow-score": cmd_shadow_score,
     "help": cmd_help,
 }
 

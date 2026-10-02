@@ -3,16 +3,17 @@ import time
 
 import requests
 
-from lib.config import Config
+from lib.config import Config, OptionsConfig
 
 log = logging.getLogger("alpaca")
 
 MAX_RETRIES = 3
 RETRY_BACKOFF = 1.0
+MAX_BAR_PAGES = 5
 
 
 class AlpacaClient:
-    def __init__(self, config: Config):
+    def __init__(self, config: Config | OptionsConfig):
         self.cfg = config
         self._s = requests.Session()
         self._s.headers.update({
@@ -80,19 +81,39 @@ class AlpacaClient:
 
     def get_bars(self, symbol: str, timeframe: str = "5Min", limit: int = 50, feed: str = "iex",
                  start: str | None = None, end: str | None = None) -> list[dict]:
-        from datetime import datetime, timedelta
+        from datetime import datetime, timedelta, timezone
+        # Alpaca reads a naive timestamp as UTC, so build these from UTC. Using
+        # local time here silently truncated `end` by the ET offset, dropping the
+        # most recent intraday bars (indicators lagged a full session).
+        now = datetime.now(timezone.utc)
         if not start:
             if timeframe.startswith("1Min"):
-                start = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%dT00:00:00Z")
+                start = (now - timedelta(days=7)).strftime("%Y-%m-%dT%H:%M:%SZ")
             elif timeframe.startswith("5Min") or timeframe.startswith("15Min"):
-                start = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%dT00:00:00Z")
+                start = (now - timedelta(days=30)).strftime("%Y-%m-%dT%H:%M:%SZ")
             else:
-                start = (datetime.now() - timedelta(days=365)).strftime("%Y-%m-%dT00:00:00Z")
+                start = (now - timedelta(days=365)).strftime("%Y-%m-%dT%H:%M:%SZ")
         if not end:
-            end = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
-        url = f"{self.cfg.data_url}/v2/stocks/{symbol}/bars?timeframe={timeframe}&start={start}&end={end}&limit={limit}&adjustment=raw&feed={feed}"
-        data = self._get_dict(url)
-        return data.get("bars") or []  # type: ignore[return-value]
+            end = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+        # Alpaca returns bars ascending from `start`, so `limit` would truncate
+        # the most recent bars. Page the whole window, then keep the tail.
+        bars: list[dict] = []
+        page_token: str | None = None
+        for _ in range(MAX_BAR_PAGES):
+            url = (
+                f"{self.cfg.data_url}/v2/stocks/{symbol}/bars?timeframe={timeframe}"
+                f"&start={start}&end={end}&limit=10000&adjustment=raw&feed={feed}"
+            )
+            if page_token:
+                url += f"&page_token={page_token}"
+            data = self._get_dict(url)
+            bars.extend(data.get("bars") or [])  # type: ignore[union-attr]
+            page_token = data.get("next_page_token")
+            if not page_token:
+                break
+        if limit and len(bars) > limit:
+            return bars[-limit:]
+        return bars
 
     def get_asset(self, symbol: str) -> dict:
         return self._get_dict(self._url(f"/assets/{symbol}"))
