@@ -1,0 +1,345 @@
+#!/usr/bin/env python3
+"""Bot #2 options income CLI. Usage: bin/options <command>
+
+Commands:
+  snapshot   Fetch options account/positions/orders → reports/options_*.json
+  scan       Once/day entry scan (strategy + Laya veto) → reports/options_proposals.json
+  enter      Risk-validate fresh proposals and place mleg credit spreads
+  manage     Evaluate open spreads and apply exit rules
+  status     Print account + spreads + today's history
+"""
+import json
+import os
+import sys
+from datetime import date, datetime, timezone
+from pathlib import Path
+
+# Re-exec into project venv when run as ./bin/options with system python
+_ROOT = Path(__file__).resolve().parent.parent
+_VENV_PY = _ROOT / ".venv" / "bin" / "python"
+if _VENV_PY.exists() and sys.prefix == sys.base_prefix:
+    os.execv(str(_VENV_PY), [str(_VENV_PY), str(Path(__file__).resolve()), *sys.argv[1:]])
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from lib.config import OptionsConfig
+from lib.options_client import OptionsClient
+
+ocfg = OptionsConfig()
+client = OptionsClient(ocfg)
+
+STATE_FILE = "options_state"
+PROPOSALS_FILE = "options_proposals.json"
+RISK_FILE = "options_risk.json"
+TRADER_FILE = "options_trader.json"
+
+
+def _reports() -> Path:
+    p = ocfg.reports_dir
+    p.mkdir(parents=True, exist_ok=True)
+    return p
+
+
+def _et_today() -> str:
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.now(ZoneInfo("America/New_York")).date().isoformat()
+    except Exception:
+        return date.today().isoformat()
+
+
+def _read_json(path: Path, default):
+    if path.exists():
+        try:
+            return json.loads(path.read_text())
+        except Exception:
+            return default
+    return default
+
+
+def _write_json(path: Path, data) -> None:
+    with open(path, "w") as f:
+        json.dump(data, f, indent=2, default=str)
+
+
+def _require_configured() -> None:
+    if not ocfg.configured:
+        print(json.dumps({"error": "options keys not configured (placeholder in .env)"}))
+        sys.exit(2)
+
+
+def _log_trader(record: dict) -> None:
+    existing = _read_json(_reports() / TRADER_FILE, {"timestamp": None, "executions": []})
+    existing.setdefault("executions", []).append(record)
+    existing["timestamp"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    _write_json(_reports() / TRADER_FILE, existing)
+
+
+def cmd_snapshot(args: list[str]) -> None:
+    _require_configured()
+    try:
+        account = client.get_account()
+    except Exception as e:
+        account = {"error": str(e)}
+    try:
+        clock = client.get_clock()
+    except Exception as e:
+        clock = {"error": str(e)}
+    try:
+        positions = client.get_positions()
+    except Exception as e:
+        positions = {"error": str(e)}
+    try:
+        open_orders = client.get_orders("open")
+    except Exception as e:
+        open_orders = {"error": str(e)}
+
+    reports = _reports()
+    for key, name in (
+        ("account", "options_account.json"),
+        ("clock", "options_clock.json"),
+        ("positions", "options_positions.json"),
+        ("open_orders", "options_open_orders.json"),
+    ):
+        value = {"account": account, "clock": clock,
+                 "positions": positions, "open_orders": open_orders}[key]
+        _write_json(reports / name, value)
+
+    # Daily history append
+    history_dir = reports / "options_history"
+    history_dir.mkdir(parents=True, exist_ok=True)
+    snapshot = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "equity": float(account.get("equity", 0)) if isinstance(account, dict) and "error" not in account else 0,
+        "cash": float(account.get("cash", 0)) if isinstance(account, dict) and "error" not in account else 0,
+        "buying_power": float(account.get("buying_power", 0)) if isinstance(account, dict) and "error" not in account else 0,
+        "position_count": len(positions) if isinstance(positions, list) else 0,
+        "positions": positions if isinstance(positions, list) else [],
+    }
+    history_file = history_dir / f"{_et_today()}.json"
+    history = _read_json(history_file, [])
+    history.append(snapshot)
+    _write_json(history_file, history)
+
+    is_open = clock.get("is_open", False) if isinstance(clock, dict) else False
+    equity = snapshot["equity"]
+    bp = snapshot["buying_power"]
+    pos_count = snapshot["position_count"]
+    print(f"OPT_MARKET={'OPEN' if is_open else 'CLOSED'} | EQUITY={equity:.2f} | "
+          f"BP={bp:.2f} | OPTION_POSITIONS={pos_count}")
+
+
+def cmd_scan(args: list[str]) -> None:
+    _require_configured()
+    force = "--force" in args
+
+    clock = client.get_clock()
+    if not clock.get("is_open", False) and not force:
+        print("OPT_SCAN=skipped (market closed)")
+        return
+
+    state_path = _reports() / f"{STATE_FILE}.json"
+    state = _read_json(state_path, {})
+    today = _et_today()
+    if state.get("last_scan_date") == today and not force:
+        print(f"OPT_SCAN=skipped (already scanned {today})")
+        return
+
+    from lib.options_strategy import market_regime, scan_candidates
+
+    regime = market_regime(client)
+    result = scan_candidates(client, ocfg.universe, regime)
+
+    # Laya veto gate (advisory — kept when Laya unavailable/erroring)
+    from lib.laya_signals import BACKEND, assess_options_entry
+    vetoes, approved = [], []
+    for proposal in result["proposals"]:
+        if BACKEND == "none":
+            proposal["laya"] = "unavailable"
+            approved.append(proposal)
+            continue
+        laya = assess_options_entry(
+            root=proposal["root"],
+            credit_pct_width=proposal["credit_pct_width"],
+            delta=proposal["short_delta"],
+            dte=proposal["dte"],
+            width=proposal["width"],
+            regime=result["regime"],
+        )
+        proposal["laya"] = laya
+        if laya.get("decision") == "reject" and not laya.get("error"):
+            vetoes.append({"root": proposal["root"], "reason": "laya_veto", "laya": laya})
+        else:
+            approved.append(proposal)
+
+    result["proposals"] = approved
+    result["rejected"] = result["rejected"] + vetoes
+    result["laya_backend"] = BACKEND
+    _write_json(_reports() / PROPOSALS_FILE, result)
+
+    state.update({"last_scan_date": today,
+                  "last_scan_ts": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+    _write_json(state_path, state)
+
+    print(f"OPT_SCAN=done | REGIME={result['regime']} | "
+          f"PROPOSALS={len(approved)} | REJECTED={len(result['rejected'])}")
+
+
+def cmd_enter(args: list[str]) -> None:
+    _require_configured()
+    clock = client.get_clock()
+    if not clock.get("is_open", False) and "--force" not in args:
+        print("OPT_ENTER=skipped (market closed)")
+        return
+
+    from lib.options_positions import group_spreads
+    from lib.options_risk import validate
+    from lib.options_strategy import executable_credit
+
+    proposals = _read_json(_reports() / PROPOSALS_FILE, {})
+    candidates = proposals.get("proposals", [])
+    if not candidates:
+        print("OPT_ENTER=none (no proposals)")
+        return
+
+    account = client.get_account()
+    positions = client.get_positions()
+    spreads, _ = group_spreads(positions)
+    open_orders = client.get_orders("open")
+    history_today = _read_json(
+        _reports() / "options_history" / f"{_et_today()}.json", [])
+
+    decisions = []
+    entered = 0
+    for proposal in candidates:
+        decision = validate(proposal, account, spreads, open_orders, history_today)
+        decision["root"] = proposal["root"]
+        decisions.append({**decision, "proposal": proposal})
+        if not decision["approved"]:
+            continue
+
+        # Re-quote at placement: market can move during the risk window
+        limit_credit = executable_credit(client, proposal)
+        if limit_credit is None:
+            _log_trader({
+                "type": "entry_skipped", "root": proposal["root"],
+                "reason": "fresh_combo_below_floor",
+                "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            })
+            continue
+
+        legs = [
+            {"symbol": proposal["short_symbol"], "ratio_qty": "1",
+             "side": "sell", "position_intent": "sell_to_open"},
+            {"symbol": proposal["long_symbol"], "ratio_qty": "1",
+             "side": "buy", "position_intent": "buy_to_open"},
+        ]
+        # mleg sign convention: negative limit = net credit received.
+        # Priced at the executable combo bid, re-quoted moments ago.
+        order = client.place_mleg_order(
+            legs=legs, qty=proposal["qty"],
+            limit_price=-limit_credit,
+        )
+        order_id = str(order.get("id") or "")
+        status = order.get("status", "unknown")
+        fill = None
+        if order_id and status not in ("dry-run", "error"):
+            fill = client.wait_for_fill(order_id, timeout=120.0)
+            status = fill.get("status", status)
+        entered += 1
+        _log_trader({
+            "type": "entry",
+            "root": proposal["root"],
+            "short_symbol": proposal["short_symbol"],
+            "long_symbol": proposal["long_symbol"],
+            "qty": proposal["qty"],
+            "credit_mid": proposal["credit_mid"],
+            "limit_credit": limit_credit,
+            "limit_price": -limit_credit,
+            "order_id": order_id,
+            "status": status,
+            "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        })
+        # New fills change the spread set — refresh so next proposal re-validates
+        if status == "filled":
+            try:
+                spreads, _ = group_spreads(client.get_positions())
+                account = client.get_account()
+                open_orders = client.get_orders("open")
+            except Exception:
+                pass
+
+    _write_json(_reports() / RISK_FILE, {
+        "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "decisions": decisions,
+    })
+    approved = sum(1 for d in decisions if d["approved"])
+    print(f"OPT_ENTER=done | PROPOSALS={len(candidates)} | APPROVED={approved} | PLACED={entered}")
+
+
+def cmd_manage(args: list[str]) -> None:
+    _require_configured()
+    from lib.options_manager import manage
+
+    result = manage(client, ocfg)
+    _write_json(_reports() / "options_manage.json", result)
+
+    closes = [a for a in result.get("actions", []) if a.get("action") == "close"]
+    for action in closes:
+        _log_trader({**action, "type": "exit",
+                     "at": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+
+    if result.get("skipped"):
+        print(f"OPT_MANAGE=skipped ({result['skipped']})")
+        return
+    holds = sum(1 for a in result.get("actions", []) if a.get("action") == "hold")
+    print(f"OPT_MANAGE=done | SPREADS={result.get('spread_count', 0)} | "
+          f"HOLD={holds} | CLOSE={len(closes)}")
+
+
+def cmd_status(args: list[str]) -> None:
+    _require_configured()
+    account = client.get_account()
+    positions = client.get_positions()
+    open_orders = client.get_orders("open")
+    from lib.options_positions import group_spreads
+    spreads, unmanaged = group_spreads(positions)
+    proposals = _read_json(_reports() / PROPOSALS_FILE, {})
+    history = _read_json(
+        _reports() / "options_history" / f"{_et_today()}.json", [])
+
+    print(json.dumps({
+        "account": {
+            "equity": account.get("equity"),
+            "buying_power": account.get("buying_power"),
+            "options_buying_power": account.get("options_buying_power"),
+            "options_trading_level": account.get("options_trading_level"),
+        },
+        "spreads": spreads,
+        "unmanaged_legs": [l.get("symbol") for l in unmanaged],
+        "open_orders": len(open_orders) if isinstance(open_orders, list) else open_orders,
+        "day_equity_history": [h.get("equity") for h in history],
+        "last_scan": proposals.get("scanned_at"),
+        "proposals": proposals.get("proposals", []),
+        "rejected": proposals.get("rejected", []),
+    }, indent=2, default=str))
+
+
+COMMANDS = {
+    "snapshot": cmd_snapshot,
+    "scan": cmd_scan,
+    "enter": cmd_enter,
+    "manage": cmd_manage,
+    "status": cmd_status,
+}
+
+
+def main() -> None:
+    if len(sys.argv) < 2 or sys.argv[1] not in COMMANDS:
+        print(__doc__)
+        sys.exit(1)
+    COMMANDS[sys.argv[1]](sys.argv[2:])
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,131 @@
+{
+  "timestamp": "2026-09-25T18:39:52+00:00",
+  "executions": [
+    {
+      "type": "entry",
+      "root": "SPY",
+      "short_symbol": "SPY261030P00744000",
+      "long_symbol": "SPY261030P00742000",
+      "qty": 1,
+      "credit_mid": 0.2,
+      "limit_price": -0.2,
+      "order_id": "",
+      "status": "dry-run",
+      "at": "2026-09-25T18:23:53+00:00"
+    },
+    {
+      "type": "entry",
+      "root": "QQQ",
+      "short_symbol": "QQQ261030P00707000",
+      "long_symbol": "QQQ261030P00705000",
+      "qty": 1,
+      "credit_mid": 0.3,
+      "limit_price": -0.3,
+      "order_id": "",
+      "status": "dry-run",
+      "at": "2026-09-25T18:23:53+00:00"
+    },
+    {
+      "type": "entry",
+      "root": "IWM",
+      "short_symbol": "IWM261030P00268000",
+      "long_symbol": "IWM261030P00266000",
+      "qty": 1,
+      "credit_mid": 0.27,
+      "limit_price": -0.27,
+      "order_id": "",
+      "status": "dry-run",
+      "at": "2026-09-25T18:23:53+00:00"
+    },
+    {
+      "type": "entry",
+      "root": "SPY",
+      "short_symbol": "SPY261030P00744000",
+      "long_symbol": "SPY261030P00742000",
+      "qty": 1,
+      "credit_mid": 0.28,
+      "limit_price": -0.28,
+      "order_id": "339e5646-dcaa-400d-a54c-d9056fe47590",
+      "status": "timeout",
+      "at": "2026-09-25T18:26:52+00:00"
+    },
+    {
+      "type": "entry",
+      "root": "SPY",
+      "short_symbol": "SPY261030P00743000",
+      "long_symbol": "SPY261030P00741000",
+      "qty": 1,
+      "credit_mid": 0.32,
+      "limit_credit": 0.25,
+      "limit_price": -0.25,
+      "order_id": "5b6a15a9-a9eb-48f3-a365-eae0958f932c",
+      "status": "timeout",
+      "at": "2026-09-25T18:32:07+00:00"
+    },
+    {
+      "type": "entry",
+      "root": "QQQ",
+      "short_symbol": "QQQ261030P00707000",
+      "long_symbol": "QQQ261030P00705000",
+      "qty": 1,
+      "credit_mid": 0.39,
+      "limit_credit": 0.36,
+      "limit_price": -0.36,
+      "order_id": "31f291d1-870f-4d95-97ea-293795b2d7f0",
+      "status": "timeout",
+      "at": "2026-09-25T18:33:09+00:00"
+    },
+    {
+      "type": "entry",
+      "root": "IWM",
+      "short_symbol": "IWM261030P00268000",
+      "long_symbol": "IWM261030P00266000",
+      "qty": 1,
+      "credit_mid": 0.32,
+      "limit_credit": 0.27,
+      "limit_price": -0.27,
+      "order_id": "0950deda-874d-4873-bfeb-662f5d5c1e7f",
+      "status": "timeout",
+      "at": "2026-09-25T18:34:11+00:00"
+    },
+    {
+      "type": "entry",
+      "root": "SPY",
+      "short_symbol": "SPY261030P00744000",
+      "long_symbol": "SPY261030P00742000",
+      "qty": 1,
+      "credit_mid": 0.35,
+      "limit_credit": 0.32,
+      "limit_price": -0.32,
+      "order_id": "8f440bc7-fc3d-4034-bf77-12899fa9cf9f",
+      "status": "timeout",
+      "at": "2026-09-25T18:37:48+00:00"
+    },
+    {
+      "type": "entry",
+      "root": "QQQ",
+      "short_symbol": "QQQ261030P00707000",
+      "long_symbol": "QQQ261030P00705000",
+      "qty": 1,
+      "credit_mid": 0.41,
+      "limit_credit": 0.3,
+      "limit_price": -0.3,
+      "order_id": "69e59f1d-c953-4300-9e90-b2f15ee95d1a",
+      "status": "timeout",
+      "at": "2026-09-25T18:38:50+00:00"
+    },
+    {
+      "type": "entry",
+      "root": "IWM",
+      "short_symbol": "IWM261030P00268000",
+      "long_symbol": "IWM261030P00266000",
+      "qty": 1,
+      "credit_mid": 0.29,
+      "limit_credit": 0.27,
+      "limit_price": -0.27,
+      "order_id": "934b3434-e7a1-47dd-8ba3-b62202c5126c",
+      "status": "timeout",
+      "at": "2026-09-25T18:39:52+00:00"
+    }
+  ]
+}

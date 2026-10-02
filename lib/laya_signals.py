@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import json
 import subprocess
-import sys
 from pathlib import Path
 
 LAYA_VENV = Path.home() / "laya_env"
@@ -35,11 +34,22 @@ def _detect_backend() -> str:
 BACKEND = _detect_backend()
 
 
+_AGENT = None
+
+
+def _get_agent():
+    """Load the laya model once per process (~20s) and reuse it."""
+    global _AGENT
+    if _AGENT is None:
+        import laya as _laya
+        _AGENT = _laya.load(LAYA_CPU_MODEL)
+    return _AGENT
+
+
 def _run_laya_cpu(state: dict, questions: dict) -> dict:
     """Run laya CPU backend in-process."""
     try:
-        import laya as _laya
-        agent = _laya.load(LAYA_CPU_MODEL)
+        agent = _get_agent()
         result = agent.predict(state, questions)
         return result if isinstance(result, dict) else {"raw": str(result)}
     except Exception as e:
@@ -259,6 +269,105 @@ def triage_symbol(symbol: str, sector: str, indicators: dict, regime: str) -> di
         "symbol": symbol,
         "priority": answers.get("priority", {}).get("choice", "low"),
         "setup_type": answers.get("setup_type", {}).get("choice", "none"),
+    }
+
+
+def assess_options_entry(root: str, credit_pct_width: float, delta: float,
+                         dte: int, width: float, regime: str = "unknown") -> dict:
+    """Veto gate for a proposed bull put credit spread (Bot #2).
+
+    Returns approve/reject/tighten. Hard-reject on clear downside; otherwise
+    advisory — the rule engine already passed structural checks.
+    """
+    state = {
+        "strategy": "bull_put_credit_spread",
+        "underlying": root,
+        "credit_pct_of_width": round(credit_pct_width, 4),
+        "short_strike_delta": delta,
+        "width": width,
+        "dte": dte,
+        "regime": regime,
+    }
+    questions = {
+        "decision": {
+            "type": "choice",
+            "instructions": (
+                "Should this credit spread entry be taken? Consider: premium vs width "
+                "(want >= 10% and at least $0.20), delta near 0.20, DTE in 30-45, and "
+                "market regime. Credit spreads profit in flat/rising markets — reject "
+                "only when the regime or premium clearly works against you."
+            ),
+            "criteria": {
+                "approve": "Premium and delta within targets, regime supportive or neutral",
+                "reject": "Hostile regime, premium too thin for the risk, or delta too aggressive",
+                "tighten": "Marginal — would prefer higher credit or lower delta",
+            },
+        },
+        "urgency": {
+            "type": "score",
+            "instructions": "How urgent is it to act on this entry (or avoid it)?",
+            "criteria": ["none", "soon", "immediate"],
+        },
+    }
+    result = _run_laya(state, questions)
+    if "error" in result:
+        return result
+    answers = result.get("answers", {})
+    decision = answers.get("decision", {})
+    urgency = answers.get("urgency", {})
+    return {
+        "underlying": root,
+        "decision": decision.get("choice", "approve"),
+        "probabilities": decision.get("probabilities", {}),
+        "urgency": urgency.get("legend", {}).get(str(int(urgency.get("score", 0))), "unknown"),
+    }
+
+
+def assess_options_position(root: str, pnl_pct: float, dte: int | None,
+                            debit_multiple: float | None) -> dict:
+    """Advisory assessment of an open credit spread (Bot #2).
+
+    Close early only when decision=reject AND urgency=immediate.
+    """
+    state = {
+        "strategy": "bull_put_credit_spread",
+        "underlying": root,
+        "pnl_pct_of_max_profit": pnl_pct,
+        "dte": dte,
+        "buyback_debit_multiple_of_credit": debit_multiple,
+    }
+    questions = {
+        "decision": {
+            "type": "choice",
+            "instructions": (
+                "Should this open credit spread be closed now? Mechanical exits already "
+                "cover 50% profit, 2x credit stop, and 21 DTE. Only reject when the "
+                "position is in clear danger beyond those rules (e.g. underlying breaking "
+                "through the short strike with time left)."
+            ),
+            "criteria": {
+                "approve": "Position healthy — hold to mechanical exits",
+                "reject": "Dangerous — underlying threatening short strike or volatility spike",
+                "tighten": "Marginal — consider closing if it does not improve next cycle",
+            },
+        },
+        "urgency": {
+            "type": "score",
+            "instructions": "How urgently does this position need action?",
+            "criteria": ["none", "soon", "immediate"],
+        },
+    }
+    result = _run_laya(state, questions)
+    if "error" in result:
+        return result
+    answers = result.get("answers", {})
+    decision = answers.get("decision", {})
+    urgency = answers.get("urgency", {})
+    return {
+        "underlying": root,
+        "decision": decision.get("choice", "approve"),
+        "probabilities": decision.get("probabilities", {}),
+        "urgency": urgency.get("legend", {}).get(str(int(urgency.get("score", 0))), "unknown"),
     }
 
 

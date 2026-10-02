@@ -1,0 +1,59 @@
+[
+  {
+    "timestamp": "2026-09-25T18:18:22.915855+00:00",
+    "equity": 10000.0,
+    "cash": 10000.0,
+    "buying_power": 40000.0,
+    "position_count": 0,
+    "positions": []
+  },
+  {
+    "timestamp": "2026-09-25T18:43:14.565534+00:00",
+    "equity": 9994.95,
+    "cash": 10026.95,
+    "buying_power": 37707.8,
+    "position_count": 2,
+    "positions": [
+      {
+        "asset_id": "15d6b9a3-482e-4fbc-9ec3-34f0a9094079",
+        "symbol": "IWM261030P00266000",
+        "exchange": "",
+        "asset_class": "us_option",
+        "asset_marginable": true,
+        "qty": "1",
+        "qty_available": "1",
+        "avg_entry_price": "1.85",
+        "side": "long",
+        "market_value": "182",
+        "cost_basis": "185",
+        "unrealized_pl": "-3",
+        "unrealized_plpc": "-0.01622",
+        "unrealized_intraday_pl": "-3",
+        "unrealized_intraday_plpc": "-0.01622",
+        "current_price": "1.82",
+        "lastday_price": "1.98",
+        "change_today": "-0.08081"
+      },
+      {
+        "asset_id": "392928b5-c9be-4541-953d-6440f63af898",
+        "symbol": "IWM261030P00268000",
+        "exchange": "",
+        "asset_class": "us_option",
+        "asset_marginable": true,
+        "qty": "-1",
+        "qty_available": "-1",
+        "avg_entry_price": "2.12",
+        "side": "short",
+        "market_value": "-214",
+        "cost_basis": "-212",
+        "unrealized_pl": "-2",
+        "unrealized_plpc": "-0.00943",
+        "unrealized_intraday_pl": "-2",
+        "unrealized_intraday_plpc": "-0.00943",
+        "current_price": "2.14",
+        "lastday_price": "2.41",
+        "change_today": "-0.11203"
+      }
+    ]
+  }
+]

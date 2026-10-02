@@ -1,0 +1,167 @@
+{
+  "timestamp": "2026-09-25T18:43:37+00:00",
+  "decisions": [
+    {
+      "root": "SPY",
+      "approved": false,
+      "reasons": [
+        "stale_proposal",
+        "open_order_on_SPY"
+      ],
+      "checks": [
+        "freshness:age=475s",
+        "spread_count:1<3",
+        "root_free:SPY",
+        "per_trade_loss:168<=200",
+        "total_exposure:341<=600",
+        "daily_pnl:-0.05%",
+        "bp_ok:37708>=168"
+      ],
+      "equity": 9994.95,
+      "max_loss": 168.0,
+      "validated_at": "2026-09-25T18:43:37+00:00",
+      "proposal": {
+        "root": "SPY",
+        "strategy": "bull_put_spread",
+        "direction": "credit",
+        "regime": "uptrend",
+        "expiration": "2026-10-30",
+        "dte": 35,
+        "qty": 1,
+        "short_symbol": "SPY261030P00744000",
+        "short_strike": 744.0,
+        "short_delta": -0.203,
+        "long_symbol": "SPY261030P00742000",
+        "long_strike": 742.0,
+        "width": 2.0,
+        "credit_mid": 0.35,
+        "combo_bid": 0.32,
+        "combo_ask": 0.371,
+        "limit_credit": 0.32,
+        "credit_pct_width": 0.16,
+        "max_profit": 32.0,
+        "max_loss": 168.0,
+        "underlying_price": 771.17,
+        "scanned_at": "2026-09-25T18:35:42+00:00",
+        "laya": {
+          "underlying": "SPY",
+          "decision": "approve",
+          "probabilities": {
+            "approve": 0.499,
+            "reject": 0.2259,
+            "tighten": 0.2751
+          },
+          "urgency": "none"
+        }
+      }
+    },
+    {
+      "root": "QQQ",
+      "approved": false,
+      "reasons": [
+        "stale_proposal",
+        "open_order_on_QQQ"
+      ],
+      "checks": [
+        "freshness:age=474s",
+        "spread_count:1<3",
+        "root_free:QQQ",
+        "per_trade_loss:170<=200",
+        "total_exposure:343<=600",
+        "daily_pnl:-0.05%",
+        "bp_ok:37708>=170"
+      ],
+      "equity": 9994.95,
+      "max_loss": 170.0,
+      "validated_at": "2026-09-25T18:43:37+00:00",
+      "proposal": {
+        "root": "QQQ",
+        "strategy": "bull_put_spread",
+        "direction": "credit",
+        "regime": "uptrend",
+        "expiration": "2026-10-30",
+        "dte": 35,
+        "qty": 1,
+        "short_symbol": "QQQ261030P00707000",
+        "short_strike": 707.0,
+        "short_delta": -0.1995,
+        "long_symbol": "QQQ261030P00705000",
+        "long_strike": 705.0,
+        "width": 2.0,
+        "credit_mid": 0.41,
+        "combo_bid": 0.3,
+        "combo_ask": 0.52,
+        "limit_credit": 0.3,
+        "credit_pct_width": 0.15,
+        "max_profit": 30.0,
+        "max_loss": 170.0,
+        "underlying_price": 744.92,
+        "scanned_at": "2026-09-25T18:35:43+00:00",
+        "laya": {
+          "underlying": "QQQ",
+          "decision": "approve",
+          "probabilities": {
+            "approve": 0.4932,
+            "reject": 0.223,
+            "tighten": 0.2838
+          },
+          "urgency": "none"
+        }
+      }
+    },
+    {
+      "root": "IWM",
+      "approved": false,
+      "reasons": [
+        "stale_proposal",
+        "already_open_on_IWM"
+      ],
+      "checks": [
+        "freshness:age=474s",
+        "spread_count:1<3",
+        "no_open_order:IWM",
+        "per_trade_loss:173<=200",
+        "total_exposure:346<=600",
+        "daily_pnl:-0.05%",
+        "bp_ok:37708>=173"
+      ],
+      "equity": 9994.95,
+      "max_loss": 173.0,
+      "validated_at": "2026-09-25T18:43:37+00:00",
+      "proposal": {
+        "root": "IWM",
+        "strategy": "bull_put_spread",
+        "direction": "credit",
+        "regime": "uptrend",
+        "expiration": "2026-10-30",
+        "dte": 35,
+        "qty": 1,
+        "short_symbol": "IWM261030P00268000",
+        "short_strike": 268.0,
+        "short_delta": -0.1968,
+        "long_symbol": "IWM261030P00266000",
+        "long_strike": 266.0,
+        "width": 2.0,
+        "credit_mid": 0.29,
+        "combo_bid": 0.27,
+        "combo_ask": 0.32,
+        "limit_credit": 0.27,
+        "credit_pct_width": 0.135,
+        "max_profit": 27.0,
+        "max_loss": 173.0,
+        "underlying_price": 282.11,
+        "scanned_at": "2026-09-25T18:35:43+00:00",
+        "laya": {
+          "underlying": "IWM",
+          "decision": "approve",
+          "probabilities": {
+            "approve": 0.5122,
+            "reject": 0.2324,
+            "tighten": 0.2553
+          },
+          "urgency": "none"
+        }
+      }
+    }
+  ]
+}
